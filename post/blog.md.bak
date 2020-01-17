@@ -1,0 +1,133 @@
+---
+title: "自定义动态数组（范式）"
+date: 2020-01-15T00:17:52+08:00
+draft: true
+---
+	自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。
+	
+	public class Array<E> {
+	private E[] data;
+	private int size;
+	//有参构造函数
+	public Array(int capacity) {
+		data =(E[])new Object[capacity];
+		size=0;
+	}
+	//无参构造函数
+	public Array() {
+		this(10);
+	}
+	public int getSize() {
+		return size;
+	}
+	public int getCapacity() {
+		return data.length;
+	}
+	public boolean isEmpty() {
+		return size==0;
+	}
+	//在末尾加入一个元素
+	public void addlist(E e) {
+		add(size, e);
+	}
+	//在开头加入一个元素
+	public void addFirst(E e) {
+		add(0,e);
+	}
+	//在数组指定位置加入一个数组
+	public void add(int index,E e) {
+
+		if(index<0||index>size) {
+			throw new IllegalArgumentException("Add failed.index<0||index>size.");
+		}
+		if(size==data.length) {
+			 resize(data.length*2);
+		}
+		for(int i=size-1;i>=index;i--) {
+			data[i+1]=data[i];
+		}
+		data[index]=e;
+		size++;
+	}
+	//获取index索引位置的元素
+	public E get(int index) {
+		if(index<0||index>size) {
+			throw new IllegalArgumentException("Get failed.index<0||index>size.");
+		}
+		return data[index];
+	}
+	//更换index索引位置的元素
+	void set(int index,E e) {
+		if(index<0||index>size) {
+			throw new IllegalArgumentException("set failed.index<0||index>size.");
+		}
+		data[index]=e;
+	}
+	//查找数组中是否有元素e
+	public boolean contains(E e) {
+		for(int i=0;i<size;i++) {
+			if(data[i].equals(e)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	//查找元素的索引
+	public int find(E e) {
+		for(int i=0;i<size;i++) {
+			if(data[i].equals(e))
+				return i;
+		}
+		return -1;//-1为非法索引，说明未找到
+	}
+	//从数组中删除元素
+	public E remove(int index) {
+		if(index<0||index>=size) {
+			throw new IllegalArgumentException("remove failed.index<0||index>size.");
+		}
+		E ret=data[index];
+		for(int i=index+1;i<size;i++) {
+			data[i-1]=data[i];			
+		}
+		size--;
+		data[size]=null;//垃圾回收，释放内存
+		
+		if(size==data.length/2)//当数组空间使用率不到一半时释放一半的空间优化内存
+			resize(data.length/2);
+		return ret;
+	}
+	public E removeFirst() {
+		return remove(0);
+	}
+	public E removeLast() {
+		return remove(size-1);
+	}
+	//删除指定元素
+	public void removeElement(E e) {
+		int index=find(e);
+		if(index!=-1)
+		remove(index);
+	}
+	@Override//检查父类中是否有这个方法
+	public String toString() {
+		StringBuilder res=new StringBuilder();
+		res.append(String.format("Array size = %d, capacity = %d\n",size,data.length));
+		res.append("[");
+		for(int i=0;i<size;i++) {
+			res.append(data[i]);
+			if(i!=size-1)
+				res.append(",");
+		}
+		res.append("]");
+		return res.toString();
+	}
+	//设置一个新数组对象，空间大小为原来两倍
+	private void resize(int newCapacity) {
+		E[] newData=(E[])new Object[newCapacity];
+		for(int i=0;i<size;i++) {
+			newData[i]=data[i];
+		}
+		data=newData;
+	}
+	}
+
