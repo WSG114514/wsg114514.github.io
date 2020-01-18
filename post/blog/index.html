@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-us">
   <head>
-    <title>数据结构-自定义动态数组（Java范式） // My Hugo Site</title>
+    <title>数据结构-自定义动态数组（Java泛型） // My Hugo Site</title>
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.62.2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,11 +11,21 @@
 
     
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="数据结构-自定义动态数组（Java范式）"/>
-<meta name="twitter:description" content="自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。 public class Array&lt;E&gt; { private E[] data; private int size; //有参构造函数 public Array(int capacity) { data =(E[])new Object[capacity]; size=0; } //无参构造函数 public Array() { this(10); } public int getSize() { return size; } public int getCapacity() { return data.length; } public boolean isEmpty() { return size==0; } //在末尾加入一个元素 public void addlist(E e) { add(size, e); } //在开头加入一个元素 public void addFirst(E e) { add(0,e); } //在数组指定位置加入一个数组 public void add(int index,E e) { if(index&lt;0||index&gt;size) { throw new IllegalArgumentException(&quot;Add failed."/>
+<meta name="twitter:title" content="数据结构-自定义动态数组（Java泛型）"/>
+<meta name="twitter:description" content="自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。
+public class Array&lt;E&gt; {private E[] data;private int size; 有参构造函数
+public Array(int capacity) {data =(E[])new Object[capacity];size=0;} 无参构造函数
+public Array() {this(10);}public int getSize() {return size;}public int getCapacity() {return data.length;}public boolean isEmpty() {return size==0;} 在末尾加入一个元素
+public void addlist(E e) {add(size, e);} 在开头加入一个元素
+public void addFirst(E e) {add(0,e);} 在数组指定位置加入一个数组"/>
 
-    <meta property="og:title" content="数据结构-自定义动态数组（Java范式）" />
-<meta property="og:description" content="自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。 public class Array&lt;E&gt; { private E[] data; private int size; //有参构造函数 public Array(int capacity) { data =(E[])new Object[capacity]; size=0; } //无参构造函数 public Array() { this(10); } public int getSize() { return size; } public int getCapacity() { return data.length; } public boolean isEmpty() { return size==0; } //在末尾加入一个元素 public void addlist(E e) { add(size, e); } //在开头加入一个元素 public void addFirst(E e) { add(0,e); } //在数组指定位置加入一个数组 public void add(int index,E e) { if(index&lt;0||index&gt;size) { throw new IllegalArgumentException(&quot;Add failed." />
+    <meta property="og:title" content="数据结构-自定义动态数组（Java泛型）" />
+<meta property="og:description" content="自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。
+public class Array&lt;E&gt; {private E[] data;private int size; 有参构造函数
+public Array(int capacity) {data =(E[])new Object[capacity];size=0;} 无参构造函数
+public Array() {this(10);}public int getSize() {return size;}public int getCapacity() {return data.length;}public boolean isEmpty() {return size==0;} 在末尾加入一个元素
+public void addlist(E e) {add(size, e);} 在开头加入一个元素
+public void addFirst(E e) {add(0,e);} 在数组指定位置加入一个数组" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wsg114514.github.io/post/blog/" />
 <meta property="article:published_time" content="2020-01-15T00:17:52+08:00" />
@@ -41,7 +51,7 @@
       
   <article class="post">
     <header class="post-header">
-      <h1 class ="post-title">数据结构-自定义动态数组（Java范式）</h1>
+      <h1 class ="post-title">数据结构-自定义动态数组（Java泛型）</h1>
       <div class="post-meta">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
@@ -59,18 +69,19 @@
         </div></div>
     </header>
     <div class="post-content">
-      <pre><code>自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。
-
-public class Array&lt;E&gt; {
+      <p>自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。</p>
+<pre><code>public class Array&lt;E&gt; {
 private E[] data;
 private int size;
-//有参构造函数
-public Array(int capacity) {
+</code></pre>
+<p>有参构造函数</p>
+<pre><code>public Array(int capacity) {
     data =(E[])new Object[capacity];
     size=0;
 }
-//无参构造函数
-public Array() {
+</code></pre>
+<p>无参构造函数</p>
+<pre><code>public Array() {
     this(10);
 }
 public int getSize() {
@@ -82,16 +93,19 @@ public int getCapacity() {
 public boolean isEmpty() {
     return size==0;
 }
-//在末尾加入一个元素
-public void addlist(E e) {
+</code></pre>
+<p>在末尾加入一个元素</p>
+<pre><code>public void addlist(E e) {
     add(size, e);
 }
-//在开头加入一个元素
-public void addFirst(E e) {
+</code></pre>
+<p>在开头加入一个元素</p>
+<pre><code>public void addFirst(E e) {
     add(0,e);
 }
-//在数组指定位置加入一个数组
-public void add(int index,E e) {
+</code></pre>
+<p>在数组指定位置加入一个数组</p>
+<pre><code>public void add(int index,E e) {
 
     if(index&lt;0||index&gt;size) {
         throw new IllegalArgumentException(&quot;Add failed.index&lt;0||index&gt;size.&quot;);
@@ -105,22 +119,25 @@ public void add(int index,E e) {
     data[index]=e;
     size++;
 }
-//获取index索引位置的元素
-public E get(int index) {
+</code></pre>
+<p>获取index索引位置的元素</p>
+<pre><code>public E get(int index) {
     if(index&lt;0||index&gt;size) {
         throw new IllegalArgumentException(&quot;Get failed.index&lt;0||index&gt;size.&quot;);
     }
     return data[index];
 }
-//更换index索引位置的元素
-void set(int index,E e) {
+</code></pre>
+<p>更换index索引位置的元素</p>
+<pre><code>void set(int index,E e) {
     if(index&lt;0||index&gt;size) {
         throw new IllegalArgumentException(&quot;set failed.index&lt;0||index&gt;size.&quot;);
     }
     data[index]=e;
 }
-//查找数组中是否有元素e
-public boolean contains(E e) {
+</code></pre>
+<p>查找数组中是否有元素e</p>
+<pre><code>public boolean contains(E e) {
     for(int i=0;i&lt;size;i++) {
         if(data[i].equals(e)) {
             return true;
@@ -128,16 +145,18 @@ public boolean contains(E e) {
     }
     return false;
 }
-//查找元素的索引
-public int find(E e) {
+</code></pre>
+<p>查找元素的索引</p>
+<pre><code>public int find(E e) {
     for(int i=0;i&lt;size;i++) {
         if(data[i].equals(e))
             return i;
     }
     return -1;//-1为非法索引，说明未找到
 }
-//从数组中删除元素
-public E remove(int index) {
+</code></pre>
+<p>从数组中删除元素</p>
+<pre><code>public E remove(int index) {
     if(index&lt;0||index&gt;=size) {
         throw new IllegalArgumentException(&quot;remove failed.index&lt;0||index&gt;size.&quot;);
     }
@@ -158,8 +177,9 @@ public E removeFirst() {
 public E removeLast() {
     return remove(size-1);
 }
-//删除指定元素
-public void removeElement(E e) {
+</code></pre>
+<p>删除指定元素</p>
+<pre><code>public void removeElement(E e) {
     int index=find(e);
     if(index!=-1)
     remove(index);
@@ -177,8 +197,9 @@ public String toString() {
     res.append(&quot;]&quot;);
     return res.toString();
 }
-//设置一个新数组对象，空间大小为原来两倍
-private void resize(int newCapacity) {
+</code></pre>
+<p>//设置一个新数组对象，空间大小为原来两倍</p>
+<pre><code>private void resize(int newCapacity) {
     E[] newData=(E[])new Object[newCapacity];
     for(int i=0;i&lt;size;i++) {
         newData[i]=data[i];

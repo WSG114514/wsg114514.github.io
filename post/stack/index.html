@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-自定义动态栈（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-自定义动态栈（Java泛型）"/>
+<meta name="twitter:description" content="定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+接口定义
+public interface Stack&lt;E&gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
+public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {Array&lt;E&gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&lt;&gt;(capacity);}public ArrayStack() {array=new Array&lt;&gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array."/>
+
+    <meta property="og:title" content="数据结构-自定义动态栈（Java泛型）" />
+<meta property="og:description" content="定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+接口定义
+public interface Stack&lt;E&gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
+public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {Array&lt;E&gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&lt;&gt;(capacity);}public ArrayStack() {array=new Array&lt;&gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/stack/" />
+<meta property="article:published_time" content="2020-01-18T22:18:42+08:00" />
+<meta property="article:modified_time" content="2020-01-18T22:18:42+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-自定义动态栈（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 18, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;('，')'，'{'，'}'，'['，']&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。</p>
+<p>接口定义</p>
+<pre><code>public interface Stack&lt;E&gt; {
+int getSize();//获取栈长度
+boolean isEmpty();//判断栈是否为空
+void push(E e);//向栈中加入元素
+E pop();//取出栈顶元素
+E peek();//查看栈顶元素
+</code></pre>
+<p>自定义动态栈</p>
+<pre><code>public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
+
+Array&lt;E&gt; array;//成员变量（在自定义Array类中写的动态数组）
+//构造函数
+public  ArrayStack(int capacity) {
+    array=new Array&lt;&gt;(capacity);
+}
+public ArrayStack() {
+    array=new Array&lt;&gt;(10);
+}
+@Override//时间复杂度O（1）
+public int getSize() {
+    return array.getSize();
+}
+@Override//时间复杂度O（1）
+public boolean isEmpty() {
+    return array.isEmpty();
+}
+@Override//时间复杂度O（1）
+public void push(E e) {
+    array.addlist(e);
+}
+@Override//时间复杂度O（1）
+public E pop() {
+    return array.removeLast();
+}
+@Override//时间复杂度O（1）
+public E peek() {
+    return array.getLast();
+}
+@Override
+public String toString() {
+    StringBuilder res= new StringBuilder();
+    res.append(&quot;Stack:[&quot;);
+    for(int i=0;i&lt;array.getSize();i++) {
+        res.append(array.get(i));
+        if(i!=array.getSize()-1)
+            res.append(&quot;, &quot;);
+    }
+    res.append(&quot;] top&quot;);
+    return res.toString();
+}
+public int getCapacity() {
+    return array.getCapacity();
+}
+}
+}
+</code></pre>
+<p>给定一个只包括 &lsquo;('，')'，'{'，'}'，'['，']&rsquo; 的字符串，判断字符串是否有效。</p>
+<pre><code>import java.util.Stack;
+class Solution {
+    public boolean isValid(String s) {
+        Stack&lt;Character&gt; stack=new Stack&lt;Character&gt;();
+        for(int i=0;i&lt;s.length();i++){
+            char c=s.charAt(i);
+            if(c=='('||c=='['||c=='{'){
+                stack.push(c);
+            }
+            else{
+                if(stack.isEmpty())
+                    return false;
+                char topChar=stack.pop();
+                 if(c==')'&amp;&amp;topChar!='(')
+                    return false;
+                 if(c==']'&amp;&amp;topChar!='[')
+                    return false;
+                 if(c=='}'&amp;&amp;topChar!='{')
+                    return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -6,18 +6,35 @@
     <description>Recent content on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jan 2020 00:17:52 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jan 2020 22:18:42 +0800</lastBuildDate>
     
 	<atom:link href="https://wsg114514.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>数据结构-自定义动态数组（Java范式）</title>
+      <title>数据结构-自定义动态栈（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/stack/</link>
+      <pubDate>Sat, 18 Jan 2020 22:18:42 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/stack/</guid>
+      <description>定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &amp;lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&amp;rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+接口定义
+public interface Stack&amp;lt;E&amp;gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
+public class ArrayStack&amp;lt;E&amp;gt; implements Stack&amp;lt;E&amp;gt; {Array&amp;lt;E&amp;gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&amp;lt;&amp;gt;(capacity);}public ArrayStack() {array=new Array&amp;lt;&amp;gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array.</description>
+    </item>
+    
+    <item>
+      <title>数据结构-自定义动态数组（Java泛型）</title>
       <link>https://wsg114514.github.io/post/blog/</link>
       <pubDate>Wed, 15 Jan 2020 00:17:52 +0800</pubDate>
       
       <guid>https://wsg114514.github.io/post/blog/</guid>
-      <description>自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。 public class Array&amp;lt;E&amp;gt; { private E[] data; private int size; //有参构造函数 public Array(int capacity) { data =(E[])new Object[capacity]; size=0; } //无参构造函数 public Array() { this(10); } public int getSize() { return size; } public int getCapacity() { return data.length; } public boolean isEmpty() { return size==0; } //在末尾加入一个元素 public void addlist(E e) { add(size, e); } //在开头加入一个元素 public void addFirst(E e) { add(0,e); } //在数组指定位置加入一个数组 public void add(int index,E e) { if(index&amp;lt;0||index&amp;gt;size) { throw new IllegalArgumentException(&amp;quot;Add failed.</description>
+      <description>自定义类Array，实现动态存储数据，实现基本增删改查功能，优化内存存储。
+public class Array&amp;lt;E&amp;gt; {private E[] data;private int size; 有参构造函数
+public Array(int capacity) {data =(E[])new Object[capacity];size=0;} 无参构造函数
+public Array() {this(10);}public int getSize() {return size;}public int getCapacity() {return data.length;}public boolean isEmpty() {return size==0;} 在末尾加入一个元素
+public void addlist(E e) {add(size, e);} 在开头加入一个元素
+public void addFirst(E e) {add(0,e);} 在数组指定位置加入一个数组</description>
     </item>
     
   </channel>
