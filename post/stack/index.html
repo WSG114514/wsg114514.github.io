@@ -12,13 +12,13 @@
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="数据结构-自定义动态栈（Java泛型）"/>
-<meta name="twitter:description" content="定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+<meta name="twitter:description" content="自定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
 接口定义
 public interface Stack&lt;E&gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
 public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {Array&lt;E&gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&lt;&gt;(capacity);}public ArrayStack() {array=new Array&lt;&gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array."/>
 
     <meta property="og:title" content="数据结构-自定义动态栈（Java泛型）" />
-<meta property="og:description" content="定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+<meta property="og:description" content="自定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
 接口定义
 public interface Stack&lt;E&gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
 public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {Array&lt;E&gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&lt;&gt;(capacity);}public ArrayStack() {array=new Array&lt;&gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array." />
@@ -65,7 +65,7 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {Array&lt;E&gt; arra
         </div></div>
     </header>
     <div class="post-content">
-      <p>定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;('，')'，'{'，'}'，'['，']&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。</p>
+      <p>自定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &lsquo;('，')'，'{'，'}'，'['，']&rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。</p>
 <p>接口定义</p>
 <pre><code>public interface Stack&lt;E&gt; {
 int getSize();//获取栈长度

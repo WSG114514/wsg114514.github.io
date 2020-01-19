@@ -6,10 +6,40 @@
     <description>Recent content on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Jan 2020 22:18:42 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jan 2020 19:57:14 +0800</lastBuildDate>
     
 	<atom:link href="https://wsg114514.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构-自定义循环队列（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/loopqueue/</link>
+      <pubDate>Sun, 19 Jan 2020 19:57:14 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/loopqueue/</guid>
+      <description>自定义的一个动态循环队列，与数组队列有所不同，新加入两个变量，front为栈首位置，tail为加入元素位置，当队列为空的时候front=tail，当（tail+1）%c=front时队列满，在队列的Capacipy中，总要浪费一个空间。在本章的后面有循环队列与数组队列的比较。（由于在循环队列中添加一个元素的方法复杂度变为O（1），相比数组队列的添加算法复杂度O（n）要快很多）
+接口定义
+public interface Queue&amp;lt;E&amp;gt; {int getSize();//获取队列长度boolean isEmpty();//判断队列是否为空void enqueue(E e);//向队尾添加E dequeue();//获取队首的元素E getFront();//查看队首的元素} 自定义循环队列
+public class LoopQueue&amp;lt;E&amp;gt;implements Queue&amp;lt;E&amp;gt; { 成员变量
+private E[] data;private int front,tail;//front为栈首，tail为加入元素对象private int size;//元素个数 构造函数
+public LoopQueue(int capacity) {data=(E[])new Object[capacity+1];front=0;tail=0;size=0;}public LoopQueue() {this(10);} 基本方法
+public int getCapacity() {return data.length-1;}@Overridepublic int getSize() {return size;}@Overridepublic boolean isEmpty() {return front==tail;}@Overridepublic void enqueue(E e) {//复杂度O(1)if((tail+1)%data.</description>
+    </item>
+    
+    <item>
+      <title>数据结构-自定义数组队列（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/arrayqueue/</link>
+      <pubDate>Sun, 19 Jan 2020 19:45:41 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/arrayqueue/</guid>
+      <description>自定义的一个动态数组队列，类似于Array篇中Array类的子类，存储结构如同字面上的意思，先进先出。
+接口定义
+public interface Queue&amp;lt;E&amp;gt; {int getSize();//获取队列长度boolean isEmpty();//判断队列是否为空void enqueue(E e);//向队尾添加E dequeue();//获取队首的元素E getFront();//查看队首的元素} 自定义数组队列
+public class ArrayQueue&amp;lt;E&amp;gt; implements Queue&amp;lt;E&amp;gt;{ 成员变量
+private Array&amp;lt;E&amp;gt; array; 构造方法
+public ArrayQueue(int capacity) {array=new Array&amp;lt;&amp;gt;(capacity);}public ArrayQueue() {array=new Array&amp;lt;&amp;gt;();} 基本方法
+@Overridepublic int getSize() {//复杂度O(1)return array.getSize();}@Overridepublic boolean isEmpty() {return array.isEmpty();}@Overridepublic void enqueue(E e) {//复杂度O(1)array.addlist(e);}@Overridepublic E dequeue() {//复杂度O(n)return array.</description>
+    </item>
     
     <item>
       <title>数据结构-自定义动态栈（Java泛型）</title>
@@ -17,7 +47,7 @@
       <pubDate>Sat, 18 Jan 2020 22:18:42 +0800</pubDate>
       
       <guid>https://wsg114514.github.io/post/stack/</guid>
-      <description>定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &amp;lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&amp;rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
+      <description>自定义的一个动态栈，方法很简单，所用到的方法基本在我的上一篇Array类中已经实现了，栈结构虽然简单但是非常重要，按照其先进后出的存储模式运用在撤销操作中很实用，在本页面最后附带LeetCode第20道题解法，（给定一个只包括 &amp;lsquo;(&#39;，&#39;)&#39;，&#39;{&#39;，&#39;}&#39;，&#39;[&#39;，&#39;]&amp;rsquo; 的字符串，判断字符串是否有效。）此题为twitter等许多大公司面试经典实用例题。
 接口定义
 public interface Stack&amp;lt;E&amp;gt; {int getSize();//获取栈长度boolean isEmpty();//判断栈是否为空void push(E e);//向栈中加入元素E pop();//取出栈顶元素E peek();//查看栈顶元素 自定义动态栈
 public class ArrayStack&amp;lt;E&amp;gt; implements Stack&amp;lt;E&amp;gt; {Array&amp;lt;E&amp;gt; array;//成员变量（在自定义Array类中写的动态数组）//构造函数public ArrayStack(int capacity) {array=new Array&amp;lt;&amp;gt;(capacity);}public ArrayStack() {array=new Array&amp;lt;&amp;gt;(10);}@Override//时间复杂度O（1）public int getSize() {return array.getSize();}@Override//时间复杂度O（1）public boolean isEmpty() {return array.isEmpty();}@Override//时间复杂度O（1）public void push(E e) {array.addlist(e);}@Override//时间复杂度O（1）public E pop() {return array.</description>
