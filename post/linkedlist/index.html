@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-自定义动态链表（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://WSG114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-自定义动态链表（Java泛型）"/>
+<meta name="twitter:description" content="自定义一个真正意义上的动态数据结构LinkedList，链表。在文章最后附带利用本次实现的链表作为底层实现的链表栈。
+public class LinkedList&lt;E&gt; { 内部类Node用来存储数据，Node型的next指向下一个元素
+private class Node{public E e;public Node next;public Node(E e,Node next) {this.e=e;this.next=next;} public Node(E e) {this(e, null);}public Node() {this(null,null);}@Overridepublic String toString() {return e.toString();}}	private Node dummyhead;//设置虚拟头节点private int size;public LinkedList() {dummyhead=new Node(null,null);size=0;} 获取链表中的元素个数
+public int getSize() {return size;} 返回链表受否为空
+public boolean siEmpty() {return size==0;} 在链表的index位置添加新的元素e,复杂度O(n) 在链表中并不是一个常用的操作，练习用:)"/>
+
+    <meta property="og:title" content="数据结构-自定义动态链表（Java泛型）" />
+<meta property="og:description" content="自定义一个真正意义上的动态数据结构LinkedList，链表。在文章最后附带利用本次实现的链表作为底层实现的链表栈。
+public class LinkedList&lt;E&gt; { 内部类Node用来存储数据，Node型的next指向下一个元素
+private class Node{public E e;public Node next;public Node(E e,Node next) {this.e=e;this.next=next;} public Node(E e) {this(e, null);}public Node() {this(null,null);}@Overridepublic String toString() {return e.toString();}}	private Node dummyhead;//设置虚拟头节点private int size;public LinkedList() {dummyhead=new Node(null,null);size=0;} 获取链表中的元素个数
+public int getSize() {return size;} 返回链表受否为空
+public boolean siEmpty() {return size==0;} 在链表的index位置添加新的元素e,复杂度O(n) 在链表中并不是一个常用的操作，练习用:)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://WSG114514.github.io/post/linkedlist/" />
+<meta property="article:published_time" content="2020-01-23T21:35:38+08:00" />
+<meta property="article:modified_time" content="2020-01-23T21:35:38+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://WSG114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-自定义动态链表（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 23, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>自定义一个真正意义上的动态数据结构LinkedList，链表。在文章最后附带利用本次实现的链表作为底层实现的链表栈。</p>
+<pre><code>public class LinkedList&lt;E&gt; {
+</code></pre>
+<p>内部类Node用来存储数据，Node型的next指向下一个元素</p>
+<pre><code>private class Node{
+     public E e;
+     public Node next;
+	 
+     public Node(E e,Node next) {
+         this.e=e;
+         this.next=next;
+     } 
+     public Node(E e) {this(e, null);}
+     public Node() {this(null,null);}
+     @Override
+     public String toString() {
+         return e.toString();
+     }
+}	 
+private Node dummyhead;//设置虚拟头节点
+private int size;
+public LinkedList() {
+    dummyhead=new Node(null,null);
+    size=0;
+}
+</code></pre>
+<p>获取链表中的元素个数</p>
+<pre><code>public int getSize() {
+    return size;
+}
+</code></pre>
+<p>返回链表受否为空</p>
+<pre><code>public boolean siEmpty() {
+    return size==0;
+}
+</code></pre>
+<p>在链表的index位置添加新的元素e,复杂度O(n)
+在链表中并不是一个常用的操作，练习用:)</p>
+<pre><code>public void add(int index,E e) {
+    if(index&lt;0||index&gt;size) {
+        throw new IllegalArgumentException(&quot;Add failed. Illegal index.&quot;);
+    }
+    Node prev=dummyhead;
+    for(int i=0;i&lt;index;i++) {
+        prev=prev.next;
+    }
+    //Node node=new Node(e);
+    //node.next=prev.next;
+    //prev.next=node;
+</code></pre>
+<p>上面三句代码可综合为一句</p>
+<pre><code>    prev.next=new Node(e,prev.next);
+    size++;
+}
+</code></pre>
+<p>在链表头添加新的元素e,复杂度O(1)</p>
+<pre><code>public void addFirst(E e) {
+    add(0, e);
+}
+</code></pre>
+<p>在链表末尾添加新的元素e,复杂度O(n)</p>
+<pre><code>public void addList(E e) {
+    add(size, e);
+}
+</code></pre>
+<p>获得链表的第index个位置的元素,复杂度O(n)
+在链表中并不是一个常用的操作，练习用:)</p>
+<pre><code>public E get(int index) {
+    if(index&lt;0||index&gt;=size)
+        throw new IllegalAccessError(&quot;Get failed.Illegal index.&quot;);
+	
+    Node cur=dummyhead.next;
+    for(int i=0;i&lt;index;i++) {
+        cur=cur.next;
+    }
+    return cur.e;
+}
+public E getFirst() {
+    return get(0);
+}
+public E getLast() {
+    return get(size-1);
+}
+</code></pre>
+<p>修改链表的第index个位置的元素为e,复杂度O(n)
+在链表中并不是一个常用的操作，练习用:)</p>
+<pre><code>public void set(int index,E e) {
+    if(index&lt;0||index&gt;=size)
+        throw new IllegalAccessError(&quot;Set failed.Illegal index.&quot;);
+	
+    Node setNode=dummyhead.next;
+    for(int i=0;i&lt;index;i++) {
+        setNode=setNode.next;
+    }
+    setNode.e=e;
+}
+</code></pre>
+<p>查找链表中是否有元素e,复杂度O(n)</p>
+<pre><code>public boolean contains(E e) {
+    Node cur=dummyhead.next;
+    while(cur!=null) {
+        if(cur.e.equals(e))
+            return true;
+        cur=cur.next;
+    }
+    return false;
+}
+</code></pre>
+<p>从链表中删除index位置的元素，返回删除的元素。复杂度O(n)</p>
+<pre><code>public E remove(int index) {
+    if(index&lt;0||index&gt;=size)
+        throw new IllegalAccessError(&quot;remove failed.Illegal index.&quot;);
+	
+    Node prev=dummyhead;
+    for(int i=0;i&lt;index;i++) {
+        prev=prev.next;
+    }
+    Node reNode=prev.next;
+    prev.next=reNode.next;
+    reNode.next=null;
+    size--;
+    return reNode.e;
+}
+</code></pre>
+<p>从链表中删除第一个元素，返回删除的元素，复杂度O(1)</p>
+<pre><code>public E removeFirst() {
+    return remove(0);
+}
+</code></pre>
+<p>从链表中删除最后一个元素，返回删除的元素，复杂度O(n)</p>
+<pre><code>public E removeLast() {
+    return remove(size-1);
+}
+@Override
+public String toString() {
+    StringBuilder res=new StringBuilder();
+    Node cur=dummyhead.next;
+    while(cur!=null) {
+        res.append(cur+&quot;-&gt;&quot;);
+        cur=cur.next;
+    }
+    //for(Node cur=dummayHead.next;cur!=null;cur=cur.next)
+    //	res.append(cur+&quot;-&gt;&quot;);
+    res.append(&quot;NULL&quot;);
+    return res.toString();
+}
+}
+</code></pre>
+<p>用LinkedList实现的链表栈LinkedListStack，方法作用在前面的接口设置中已说明。</p>
+<p>成员变量</p>
+<pre><code>private LinkedList&lt;E&gt; list;
+</code></pre>
+<p>构造函数</p>
+<pre><code>public LinkedListStack() {
+    list = new LinkedList&lt;E&gt;();
+}
+@Override
+public int getSize() {
+    return list.getSize();
+}
+@Override
+public boolean isEmpty() {
+    return list.siEmpty();
+}
+@Override
+public void push(E e) {	
+    list.addFirst(e);
+}
+@Override
+public E pop() {
+    return list.removeFirst();
+}
+@Override
+public E peek() {
+    return list.getFirst();
+}
+@Override
+public String toString() {
+    StringBuilder res=new StringBuilder();
+    res.append(&quot;Stack top:&quot;);
+    for(int i=0;i&lt;list.getSize();i++) {
+        res.append(list.get(i));	
+        res.append(&quot;-&gt;&quot;);
+    }
+    res.append(&quot;NULL&quot;);
+    return res.toString();
+}
+</code></pre>
+<p>}</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
