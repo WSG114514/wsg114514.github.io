@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>切比雪夫距离算法-路径最优选择 // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://WSG114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="切比雪夫距离算法-路径最优选择"/>
+<meta name="twitter:description" content="国际象棋棋盘上二个位置间的切比雪夫距离是指王要从一个位子移至另一个位子需要走的步数。由于王可以往斜前或斜后方向移动一格，因此可以较有效率的到达目的的格子。数学上，切比雪夫距离或是L∞度量，是向量空间中的一种度量，二个点之间的距离定义为其各座标数值差绝对值的最大值。比较常用的实例就是在无障碍的情况下计算两点之间的路程，沿水平或者竖直方向移动一个单位长度，或者跨过对角线的时间相同。
+例题：平面上有 n 个点，点的位置用整数坐标表示 points[i] = [xi, yi]。请你计算访问所有这些点需要的最小时间（以秒为单位）。
+你可以按照下面的规则在平面上移动：
+每一秒沿水平或者竖直方向移动一个单位长度，或者跨过对角线（可以看作在一秒内向水平和竖直方向各移动一个单位长度）。 必须按照数组中出现的顺序来访问这些点。
+示例 1： 输入：points = [[1,1],[3,4],[-1,0]] 输出：7 解释：一条最佳的访问路径是： [1,1] -&gt; [2,2] -&gt; [3,3] -&gt; [3,4] -&gt; [2,3] -&gt; [1,2] -&gt; [0,1] -&gt; [-1,0]
+从 [1,1] 到 [3,4] 需要 3 秒 从 [3,4] 到 [-1,0] 需要 4 秒 一共需要 7 个单位时间。
+来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/minimum-time-visiting-all-points
+解决代码：
+class Solution {public int minTimeToVisitAllPoints(int[][] points) {int res=0;for(int i=1;i&lt;points.length;i&#43;&#43;) {int wid=Math.abs(points[i][0]-points[i-1][0]);//算出两点之间横坐标的距离winint hei=Math.abs(points[i][1]-points[i-1][1]);//算出两点之间从坐标的距离heiif(wid==hei) {res&#43;=wid;}else {int min=Math."/>
+
+    <meta property="og:title" content="切比雪夫距离算法-路径最优选择" />
+<meta property="og:description" content="国际象棋棋盘上二个位置间的切比雪夫距离是指王要从一个位子移至另一个位子需要走的步数。由于王可以往斜前或斜后方向移动一格，因此可以较有效率的到达目的的格子。数学上，切比雪夫距离或是L∞度量，是向量空间中的一种度量，二个点之间的距离定义为其各座标数值差绝对值的最大值。比较常用的实例就是在无障碍的情况下计算两点之间的路程，沿水平或者竖直方向移动一个单位长度，或者跨过对角线的时间相同。
+例题：平面上有 n 个点，点的位置用整数坐标表示 points[i] = [xi, yi]。请你计算访问所有这些点需要的最小时间（以秒为单位）。
+你可以按照下面的规则在平面上移动：
+每一秒沿水平或者竖直方向移动一个单位长度，或者跨过对角线（可以看作在一秒内向水平和竖直方向各移动一个单位长度）。 必须按照数组中出现的顺序来访问这些点。
+示例 1： 输入：points = [[1,1],[3,4],[-1,0]] 输出：7 解释：一条最佳的访问路径是： [1,1] -&gt; [2,2] -&gt; [3,3] -&gt; [3,4] -&gt; [2,3] -&gt; [1,2] -&gt; [0,1] -&gt; [-1,0]
+从 [1,1] 到 [3,4] 需要 3 秒 从 [3,4] 到 [-1,0] 需要 4 秒 一共需要 7 个单位时间。
+来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/minimum-time-visiting-all-points
+解决代码：
+class Solution {public int minTimeToVisitAllPoints(int[][] points) {int res=0;for(int i=1;i&lt;points.length;i&#43;&#43;) {int wid=Math.abs(points[i][0]-points[i-1][0]);//算出两点之间横坐标的距离winint hei=Math.abs(points[i][1]-points[i-1][1]);//算出两点之间从坐标的距离heiif(wid==hei) {res&#43;=wid;}else {int min=Math." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://WSG114514.github.io/post/chebyshev/" />
+<meta property="article:published_time" content="2020-01-26T12:40:04+08:00" />
+<meta property="article:modified_time" content="2020-01-26T12:40:04+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://WSG114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">切比雪夫距离算法-路径最优选择</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 26, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>国际象棋棋盘上二个位置间的切比雪夫距离是指王要从一个位子移至另一个位子需要走的步数。由于王可以往斜前或斜后方向移动一格，因此可以较有效率的到达目的的格子。数学上，切比雪夫距离或是L∞度量，是向量空间中的一种度量，二个点之间的距离定义为其各座标数值差绝对值的最大值。比较常用的实例就是在无障碍的情况下计算两点之间的路程，沿水平或者竖直方向移动一个单位长度，或者跨过对角线的时间相同。</p>
+<p>例题：平面上有 n 个点，点的位置用整数坐标表示 points[i] = [xi, yi]。请你计算访问所有这些点需要的最小时间（以秒为单位）。</p>
+<p>你可以按照下面的规则在平面上移动：</p>
+<p>每一秒沿水平或者竖直方向移动一个单位长度，或者跨过对角线（可以看作在一秒内向水平和竖直方向各移动一个单位长度）。
+必须按照数组中出现的顺序来访问这些点。</p>
+<p>示例 1：
+输入：points = [[1,1],[3,4],[-1,0]]
+输出：7
+解释：一条最佳的访问路径是： [1,1] -&gt; [2,2] -&gt; [3,3] -&gt; [3,4] -&gt; [2,3] -&gt; [1,2] -&gt; [0,1] -&gt; [-1,0]<br>
+从 [1,1] 到 [3,4] 需要 3 秒 
+从 [3,4] 到 [-1,0] 需要 4 秒
+一共需要 7 个单位时间。</p>
+<p>来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/minimum-time-visiting-all-points</p>
+<p>解决代码：</p>
+<pre><code>class Solution {
+public int minTimeToVisitAllPoints(int[][] points) {
+    int res=0;
+    for(int i=1;i&lt;points.length;i++) {
+        int wid=Math.abs(points[i][0]-points[i-1][0]);//算出两点之间横坐标的距离win
+        int hei=Math.abs(points[i][1]-points[i-1][1]);//算出两点之间从坐标的距离hei
+        if(wid==hei) {
+            res+=wid;
+        }else {
+            int min=Math.min(wid, hei);
+            int max=Math.max(wid, hei);
+            res+=min;
+            res+=(max-min);
+        }
+    }
+    return res;
+}
+}</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
