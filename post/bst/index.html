@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-自定义二分搜索树（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://WSG114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-自定义二分搜索树（Java泛型）"/>
+<meta name="twitter:description" content="自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。
+import java.util.LinkedList;import java.util.Stack;import java.util.Queue; 二分搜索树存储的元素必须具有比较性 成员变量：
+public class BST&lt;E extends Comparable&lt;E&gt;&gt; {private class Node{public E e;public Node left,right;public Node(E e) {this.e=e;left=null;right=null;}}private Node root;//根节点private int size;//记录存储了多少元素 构造函数：
+public BST() {root=null;size=0;} 方法实现：
+public int getSize() {return size;}public boolean isEmpty() {return size==0;} 向二分搜索树中添加新的元素e
+public void add(E e) {root=add(root, e);}//向以node为根的二分搜索树中插入元素E，递归算法//递归思路：重点."/>
+
+    <meta property="og:title" content="数据结构-自定义二分搜索树（Java泛型）" />
+<meta property="og:description" content="自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。
+import java.util.LinkedList;import java.util.Stack;import java.util.Queue; 二分搜索树存储的元素必须具有比较性 成员变量：
+public class BST&lt;E extends Comparable&lt;E&gt;&gt; {private class Node{public E e;public Node left,right;public Node(E e) {this.e=e;left=null;right=null;}}private Node root;//根节点private int size;//记录存储了多少元素 构造函数：
+public BST() {root=null;size=0;} 方法实现：
+public int getSize() {return size;}public boolean isEmpty() {return size==0;} 向二分搜索树中添加新的元素e
+public void add(E e) {root=add(root, e);}//向以node为根的二分搜索树中插入元素E，递归算法//递归思路：重点." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://WSG114514.github.io/post/bst/" />
+<meta property="article:published_time" content="2020-01-29T19:35:31+08:00" />
+<meta property="article:modified_time" content="2020-01-29T19:35:31+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://WSG114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-自定义二分搜索树（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 29, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。</p>
+<pre><code>import java.util.LinkedList;
+import java.util.Stack;
+import java.util.Queue;
+</code></pre>
+<p>二分搜索树存储的元素必须具有比较性
+成员变量：</p>
+<pre><code>public class BST&lt;E extends Comparable&lt;E&gt;&gt; {
+private class Node{
+    public E e;
+    public Node left,right;
+	
+    public Node(E e) {
+        this.e=e;
+        left=null;
+        right=null;
+    }
+}
+private Node root;//根节点
+private int size;//记录存储了多少元素
+</code></pre>
+<p>构造函数：</p>
+<pre><code>public BST() {
+    root=null;
+    size=0;
+}
+</code></pre>
+<p>方法实现：</p>
+<pre><code>public int getSize() {
+    return size;
+}
+public boolean isEmpty() {
+    return size==0;
+}
+</code></pre>
+<p>向二分搜索树中添加新的元素e</p>
+<pre><code>public void add(E e) {
+        root=add(root, e);
+}
+//向以node为根的二分搜索树中插入元素E，递归算法
+//递归思路：重点.终止条件. 
+private Node add(Node node,E e) {
+    //终止条件
+    if(node==null) {
+        size++;
+        return new Node(e);
+    }
+    //递归.把递归后的整体赋值给node.left或是node.right
+    if(e.compareTo(node.e)&lt;0) {
+        node.left=add(node.left,e);
+    }else if(e.compareTo(node.e)&gt;0){
+        node.right=add(node.right,e);
+    }
+    return node;
+}
+</code></pre>
+<p>查看二分搜索树中是否包含元素e</p>
+<pre><code>public boolean contains(E e) {
+    return contains(root, e);
+}
+private boolean contains(Node node,E e) {
+    if(node==null) {
+        return false;
+    }
+	
+    if(e.compareTo(node.e)==0) {
+        return true;
+    }else if(e.compareTo(node.e)&lt;0) {
+        contains(node.left, e);
+    }else {
+        contains(node.right, e);
+    }
+    return false;
+}
+</code></pre>
+<p>二分搜索树的前序遍历(最常用最自然的遍历方式)，先访问该节点再访问左子树和右子树</p>
+<pre><code>public void preOrder() {
+    preOrder(root);
+}
+private void  preOrder(Node node) {
+    //先写递归终止条件
+    if(node==null) {
+        return;
+    }
+	
+    System.out.println(node.e);
+    preOrder(node.left);
+    preOrder(node.right);
+}
+</code></pre>
+<p>二分搜索树的非递归前序遍历(栈存储结构实现)</p>
+<pre><code>public void preOrderNR() {
+    Stack&lt;Node&gt; stack=new Stack&lt;&gt;();
+    stack.push(root);
+    while(!stack.isEmpty()) {
+        Node cur=stack.pop();//栈顶元素放进cur里
+        System.out.println(cur.e);
+		
+        if(cur.right!=null) {
+            stack.push(cur.right);
+        }
+        if(cur.left!=null) {
+            stack.push(cur.left);
+        }	
+    }
+}
+</code></pre>
+<p>二分搜索树的中序遍历，先访问左节点然后访问该节点，最后访问右节点。</p>
+<pre><code>public void inOrder() {
+    inOrder(root);
+}
+private void inOrder(Node node) {
+    //先写递归终止条件
+    if(node==null) {
+        return;
+    }
+	
+    inOrder(node.left);
+    System.out.println(node.e);
+    inOrder(node.right);
+}
+</code></pre>
+<p>二分搜索树的后序遍历，先访问左节点再访问右节点，最后访问该节点。
+后序遍历的特性是先处理孩子节点，所以可以应用在释放内存上。</p>
+<pre><code>public void postOrder() {
+    postOrder(root);
+}
+private void postOrder(Node node) {
+    //先写递归终止条件
+    if(node==null) {
+        return;
+    }
+	
+    postOrder(node.left);
+    postOrder(node.right);
+    System.out.println(node.e);
+}
+</code></pre>
+<p>二分搜索树的层序遍历（广度优先遍历，利用队列先进先出）
+意义：广度优先遍历能够让你更快的找到所要查询的元素。无权图的最短路径</p>
+<pre><code>public void levelOrder() {
+    Queue&lt;Node&gt; queue=new LinkedList&lt;Node&gt;();
+    queue.add(root);
+    while(!queue.isEmpty()) {
+        Node cur=queue.remove();
+        System.out.println(cur.e);
+		
+        if(cur.left!=null) {
+            queue.add(cur.left);
+        }
+        if(cur.right!=null) {
+            queue.add(cur.right);
+        }
+    }
+}
+</code></pre>
+<p>寻找二分搜索树的最小元素</p>
+<pre><code>public Node minimum() {
+    if(size==0) {
+        throw new IllegalArgumentException(&quot;BST is empty&quot;);
+    }
+    return minimum(root);
+}
+private Node minimum(Node node) {
+    if(node.left==null) {
+        return node;
+    }
+    return minimum(node.left);
+}
+</code></pre>
+<p>寻找二分搜索树的最大元素</p>
+<pre><code>public Node maximum() {
+    if(size==0) {
+        throw new IllegalArgumentException(&quot;BST is empty&quot;);
+    }
+    return maximum(root);
+}
+private Node maximum(Node node) {
+    if(node.right==null) {
+        return node;
+    }
+    return maximum(node.right);
+}
+</code></pre>
+<p>从二分搜索树中删除最小值所在节点，返回最小值</p>
+<pre><code>public Node removeMin() {
+    Node ret=minimum();
+    root=removeMin(root);//从root出发，把删除最小值后的root跟新给新root。
+    return ret;
+}
+//删除掉以node为根的二分搜索树中的最小节点
+//返回删除节点后新的二分搜索树的根
+private Node removeMin(Node node) {
+    if(node.left==null) {
+        Node rightNode = node.right;
+        node.right=null;
+        size--;
+        return rightNode;
+    }
+    node.left=removeMin(node.left);
+    return node;
+}
+
+//从二分搜索树中和删除最大值所在节点
+public Node removeMax() {
+    Node ret=maximum();
+    return ret;
+}
+private Node removeMax(Node node) {
+    if(node.right==null) {
+        Node leftNode=node.left;
+        node.left=null;
+        size--;
+        return leftNode;
+    }
+    node.right=removeMax(node.right);
+    return node;
+}
+</code></pre>
+<p>删除指定元素</p>
+<pre><code>public void remove(E e) {
+    remove(root,e);
+}
+//删除掉以node为根的二分搜索树中值为e的节点，递归算法。
+//返回删除节点后新的二分搜索树的根。
+private Node remove(Node node,E e) {
+    if(node==null) {
+        return null;
+    }
+    if(e.compareTo(node.e)&lt;0) {
+        return remove(node.left, e);
+    }else if(e.compareTo(node.e)&gt;0) {
+        return remove(node.right, e);
+    }else {//e=node.e
+        //待删除节点左子树为空的情况
+        if(node.left==null) {
+            Node rightNode=node.right;
+            node.right=null;
+            size--;
+            return rightNode;
+        }
+        //待删除节点右子树为空的情况
+        if(node.right==null) {
+            Node leftNode=node.left;
+            node.left=null;
+            size--;
+            return leftNode;
+        }
+</code></pre>
+<p>———————重点———————</p>
+<pre><code>        //待删除节点左右子树均不为空的情况
+        //找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+        //用这个节点顶替 待删除节点的位置
+        Node successor=minimum(node.right);
+        successor.right=removeMin(node.right);
+        successor.left=node.left;
+		
+        node.left=node.right=null;
+        return successor;
+    }
+}
+//toString
+@Override
+public String toString() {
+    StringBuilder res=new StringBuilder();
+    generateBSTString(root,0,res);
+    return res.toString();
+}
+//生成以node为根节点，深度为depth的描述二叉树的字符串
+private void generateBSTString(Node node,int depth, StringBuilder res){
+	
+    if(node == null) {
+        res.append(&quot;null\n&quot;);
+        return;
+    }
+    res.append(generateDepthString(depth)+node.e+&quot;\n&quot;);
+    generateBSTString(node.left, depth+1, res);
+    generateBSTString(node.right, depth+1, res);
+}
+private String generateDepthString(int depth) {
+    StringBuilder res=new StringBuilder();
+    for(int i=0;i&lt;depth;i++) {
+        res.append(&quot;--&quot;);
+    }
+    return res.toString();
+}
+}</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

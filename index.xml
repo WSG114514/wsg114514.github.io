@@ -6,10 +6,24 @@
     <description>Recent content on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Jan 2020 12:40:04 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 19:35:31 +0800</lastBuildDate>
     
 	<atom:link href="https://WSG114514.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构-自定义二分搜索树（Java泛型）</title>
+      <link>https://WSG114514.github.io/post/bst/</link>
+      <pubDate>Wed, 29 Jan 2020 19:35:31 +0800</pubDate>
+      
+      <guid>https://WSG114514.github.io/post/bst/</guid>
+      <description>自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。
+import java.util.LinkedList;import java.util.Stack;import java.util.Queue; 二分搜索树存储的元素必须具有比较性 成员变量：
+public class BST&amp;lt;E extends Comparable&amp;lt;E&amp;gt;&amp;gt; {private class Node{public E e;public Node left,right;public Node(E e) {this.e=e;left=null;right=null;}}private Node root;//根节点private int size;//记录存储了多少元素 构造函数：
+public BST() {root=null;size=0;} 方法实现：
+public int getSize() {return size;}public boolean isEmpty() {return size==0;} 向二分搜索树中添加新的元素e
+public void add(E e) {root=add(root, e);}//向以node为根的二分搜索树中插入元素E，递归算法//递归思路：重点.</description>
+    </item>
     
     <item>
       <title>切比雪夫距离算法-路径最优选择</title>
