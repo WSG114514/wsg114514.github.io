@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-自定义集合比较（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-自定义集合比较（Java泛型）"/>
+<meta name="twitter:description" content="接口设置
+public interface Set&lt;E&gt; {void add(E e);void remove(E e);boolean contains(E e);//判断是否有e元素int getSize();boolean isEmpty();} 以二叉树为底层数据结构设计的集合
+public class BSTSet&lt;E extends Comparable&lt;E&gt;&gt; implements Set&lt;E&gt; {private BST&lt;E&gt; bst;//构造函数public BSTSet() {bst=new BST&lt;E&gt;();}@Overridepublic void add(E e) {bst.add(e);}public void remove(E e) {bst.remove(e);}@Overridepublic boolean contains(E e) {return bst.contains(e);}@Overridepublic int getSize() {return bst.getSize();}@Overridepublic boolean isEmpty() {return bst."/>
+
+    <meta property="og:title" content="数据结构-自定义集合比较（Java泛型）" />
+<meta property="og:description" content="接口设置
+public interface Set&lt;E&gt; {void add(E e);void remove(E e);boolean contains(E e);//判断是否有e元素int getSize();boolean isEmpty();} 以二叉树为底层数据结构设计的集合
+public class BSTSet&lt;E extends Comparable&lt;E&gt;&gt; implements Set&lt;E&gt; {private BST&lt;E&gt; bst;//构造函数public BSTSet() {bst=new BST&lt;E&gt;();}@Overridepublic void add(E e) {bst.add(e);}public void remove(E e) {bst.remove(e);}@Overridepublic boolean contains(E e) {return bst.contains(e);}@Overridepublic int getSize() {return bst.getSize();}@Overridepublic boolean isEmpty() {return bst." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/set/" />
+<meta property="article:published_time" content="2020-02-01T15:24:40+08:00" />
+<meta property="article:modified_time" content="2020-02-01T15:24:40+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-自定义集合比较（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 1, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>接口设置</p>
+<pre><code>public interface Set&lt;E&gt; {
+void add(E e);
+void remove(E e);
+boolean contains(E e);//判断是否有e元素
+int getSize();
+boolean isEmpty();
+}
+</code></pre>
+<p>以二叉树为底层数据结构设计的集合</p>
+<pre><code>public class BSTSet&lt;E extends Comparable&lt;E&gt;&gt; implements Set&lt;E&gt; {
+
+private BST&lt;E&gt; bst;
+//构造函数
+public BSTSet() {
+    bst=new BST&lt;E&gt;();
+}
+@Override
+public void add(E e) {
+    bst.add(e);
+}
+public void remove(E e) {
+    bst.remove(e);
+}
+@Override
+public boolean contains(E e) {
+    return bst.contains(e);
+}
+@Override
+public int getSize() {
+    return bst.getSize();
+}
+@Override
+public boolean isEmpty() {
+    return bst.isEmpty();
+}
+}
+</code></pre>
+<p>以链表为底层数据结构设计的集合</p>
+<pre><code>public class LinkedListSet&lt;E&gt; implements Set&lt;E&gt;{
+
+private LinkedList&lt;E&gt; list;//这里的LinkedList为自己写的链表，基于链表的集合实现
+//构造函数
+public LinkedListSet() {
+    list = new LinkedList&lt;E&gt;();
+}
+@Override
+public void add(E e) {
+    //在链表中可用存储重复元素,但是在集合中不能够有重复元素。
+    if(!list.contains(e)) {
+        list.addFirst(e);
+    }
+}
+
+@Override
+public void remove(E e) {
+    list.removeElement(e);
+}
+
+@Override
+public boolean contains(E e) {
+    return list.contains(e);
+}
+
+@Override
+public int getSize() {
+    return list.getSize();
+}
+
+@Override
+public boolean isEmpty() {
+    return list.isEmpty();
+}
+}
+</code></pre>
+<p>在网上找了一个有关文件读取的方法类，过程以及封装好了，主要作用就是读取文件名称为filename中的内容，并将其中包含的所有词语放进words中。</p>
+<pre><code>import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class FileOperation {
+
+// 读取文件名称为filename中的内容，并将其中包含的所有词语放进words中
+public static boolean readFile(String filename, ArrayList&lt;String&gt; words){
+
+   if (filename == null || words == null){
+       System.out.println(&quot;filename is null or words is null&quot;);
+       return false;
+   }
+</code></pre>
+<p>文件读取</p>
+<pre><code>   Scanner scanner;
+   try {
+       File file = new File(filename);
+       if(file.exists()){
+           FileInputStream fis = new FileInputStream(file);
+           scanner = new Scanner(new BufferedInputStream(fis), &quot;UTF-8&quot;);
+           scanner.useLocale(Locale.ENGLISH);
+       }
+       else
+           return false;
+   }
+   catch(IOException ioe){
+       System.out.println(&quot;Cannot open &quot; + filename);
+       return false;
+   }
+
+   // 简单分词
+   // 这个分词方式相对简陋, 没有考虑很多文本处理中的特殊问题
+   // 在这里只做demo展示用
+   if (scanner.hasNextLine()) {
+
+       String contents = scanner.useDelimiter(&quot;\\A&quot;).next();
+
+       int start = firstCharacterIndex(contents, 0);
+       for (int i = start + 1; i &lt;= contents.length(); )
+           if (i == contents.length() || !Character.isLetter(contents.charAt(i))) {
+               String word = contents.substring(start, i).toLowerCase();
+               words.add(word);
+               start = firstCharacterIndex(contents, i);
+               i = start + 1;
+           } else
+               i++;
+   }
+
+   return true;
+}
+</code></pre>
+<p>寻找字符串s中，从start的位置开始的第一个字母字符的位置</p>
+<pre><code>private static int firstCharacterIndex(String s, int start){
+
+   for( int i = start ; i &lt; s.length() ; i ++ )
+       if( Character.isLetter(s.charAt(i)) )
+           return i;
+   return s.length();
+}
+}
+</code></pre>
+<p>在main函数中比较算法速度</p>
+<pre><code>import java.util.ArrayList;
+public class Main {
+</code></pre>
+<p>testSet为自定义的一个测试方法，返回整个过程所用时间</p>
+<pre><code>private static double testSet(Set&lt;String&gt; set,String filename) {
+    long startTime = System.nanoTime();
+    System.out.println(filename);
+    ArrayList&lt;String&gt; words = new ArrayList&lt;String&gt;();
+    if(FileOperation.readFile(filename, words)) {
+        System.out.println(&quot;Total words:&quot;+words.size());
+        for(String word:words) {
+            set.add(word);
+        }
+    }
+    long endTime = System.nanoTime();
+    return (endTime-startTime)/1000000000.0;
+}
+</code></pre>
+<p>main函数</p>
+<pre><code>public static void main(String[] args) {
+    String filename=&quot;pride-and-prejudice.txt&quot;;
+	
+    BSTSet&lt;String&gt; bstSet=new BSTSet&lt;&gt;();
+    double time1=testSet(bstSet, filename);
+    System.out.println(&quot;BST Set: &quot;+time1+&quot; s&quot;);
+    System.out.println();
+    LinkedListSet&lt;String&gt; linkedListSet=new LinkedListSet&lt;String&gt;();
+    double time2=testSet(linkedListSet, filename);
+    System.out.println(&quot;LinkedList Set:&quot;+time2+&quot; s&quot;);
+}  
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>pride-and-prejudice.txt
+Total words:45406
+BST Set: 0.1740431 s
+
+pride-and-prejudice.txt
+Total words:45406
+LinkedList Set:0.6575893 s
+</code></pre>
+<p>总结：在链表数组中操作为O(n),而在二叉树的数组中操作为O(logn),实际上logn的速度要比n快很多，而n越大效果越明显，可能以复杂度logn的算法做一个任务需要一个晚上，当换做为n时可能100年才会算出结果。这就是复杂度的重要性。</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
