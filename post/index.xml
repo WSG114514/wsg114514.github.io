@@ -28,7 +28,7 @@ public class BSTSet&amp;lt;E extends Comparable&amp;lt;E&amp;gt;&amp;gt; impleme
       <pubDate>Wed, 29 Jan 2020 19:35:31 +0800</pubDate>
       
       <guid>https://wsg114514.github.io/post/bst/</guid>
-      <description>自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。
+      <description>自定义的一个二分搜索树，实现基本增删改查功能，前中后序遍历，广度优先遍历，不能存储重复元素。在博客后面附带利用二叉树不存储重复元素的特性解出的Leecode第804题。
 import java.util.LinkedList;import java.util.Stack;import java.util.Queue; 二分搜索树存储的元素必须具有比较性 成员变量：
 public class BST&amp;lt;E extends Comparable&amp;lt;E&amp;gt;&amp;gt; {private class Node{public E e;public Node left,right;public Node(E e) {this.e=e;left=null;right=null;}}private Node root;//根节点private int size;//记录存储了多少元素 构造函数：
 public BST() {root=null;size=0;} 方法实现：

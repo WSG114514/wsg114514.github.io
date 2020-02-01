@@ -215,6 +215,23 @@ public String toString() {
 }
 }
 </code></pre>
+<p>从链表中删除元素e</p>
+<pre><code>public void removeElement(E e) {
+    Node prev=dummyhead;//要删除节点的前一个元素
+    while(prev.next!=null) {
+        if(prev.next.e.equals(e)) {
+            break;
+        }
+        prev=prev.next;
+    }
+    if(prev.next!=null) {
+        Node delNode=prev.next;
+        prev.next=delNode.next;
+        delNode.next=null;
+        size--;
+    }
+}
+</code></pre>
 <p>用LinkedList实现的链表栈LinkedListStack，方法作用在前面的接口设置中已说明。</p>
 <p>成员变量</p>
 <pre><code>private LinkedList&lt;E&gt; list;
