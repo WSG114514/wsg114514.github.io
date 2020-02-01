@@ -6,10 +6,34 @@
     <description>Recent content on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 15:24:40 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 01 Feb 2020 20:35:20 +0800</lastBuildDate>
     
 	<atom:link href="https://wsg114514.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构-二叉树Map映射（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/bstmap/</link>
+      <pubDate>Sat, 01 Feb 2020 20:35:20 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/bstmap/</guid>
+      <description>以二叉树为底层实现的Map映射，在博客结尾有链表Map与二叉树Map的运算比较
+import java.util.ArrayList;public class BSTMap&amp;lt;K extends Comparable&amp;lt;K&amp;gt;,V&amp;gt;implements Map&amp;lt;K, V&amp;gt; {private class Node{public K key;public V value;public Node left,right; public Node(K key,V value) {this.key=key;this.value=value;left=null;right=null;}} 成员变量
+private Node root;private int size;public BSTMap() {root=null;size=0;} 辅助函数,返回以node为根节点的二分搜索树中，key所在的节点
+private Node getNode(Node node,K key) {if(node==null) {return null;}if(key.compareTo(node.key)==0) {return node;}else if(key.compareTo(node.key)&amp;lt;0) {return getNode(node.left, key);}else { //(key.</description>
+    </item>
+    
+    <item>
+      <title>数据结构-链表Map映射（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/linkedlistmap/</link>
+      <pubDate>Sat, 01 Feb 2020 17:26:00 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/linkedlistmap/</guid>
+      <description>接口设计：
+public interface Map&amp;lt;K, V&amp;gt; {void add(K key,V value);//加入一个key为值，value为键的map元素V remove(K key);//删除值为key的map元素boolean contains(K key);//查看是否存在值为key的元素V get(K key);//获得值为key的value值void set(K key,V newValue);//重新设置值为key的valueint getSize();//返回长度boolean isEmpty();//查看是否为空} 以链表为底层实现的Map映射，在博客结尾有应用例题
+import java.util.ArrayList;public class LinkedListMap&amp;lt;K, V&amp;gt; implements Map&amp;lt;K, V&amp;gt; { 定义一个节点内部类
+private class Node{public K key;public V value;public Node next;public Node(K key,V value,Node next) {this.key=key;this.value=value;this.next=next;}//public Node(K key,V value) {this(key,value,null);}public Node(K key) {this(key,null,null);}public Node() {this(null,null,null);}@Overridepublic String toString() {return key.</description>
+    </item>
     
     <item>
       <title>数据结构-自定义集合比较（Java泛型）</title>

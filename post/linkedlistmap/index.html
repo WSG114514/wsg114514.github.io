@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-链表Map映射（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-链表Map映射（Java泛型）"/>
+<meta name="twitter:description" content="接口设计：
+public interface Map&lt;K, V&gt; {void add(K key,V value);//加入一个key为值，value为键的map元素V remove(K key);//删除值为key的map元素boolean contains(K key);//查看是否存在值为key的元素V get(K key);//获得值为key的value值void set(K key,V newValue);//重新设置值为key的valueint getSize();//返回长度boolean isEmpty();//查看是否为空} 以链表为底层实现的Map映射，在博客结尾有应用例题
+import java.util.ArrayList;public class LinkedListMap&lt;K, V&gt; implements Map&lt;K, V&gt; { 定义一个节点内部类
+private class Node{public K key;public V value;public Node next;public Node(K key,V value,Node next) {this.key=key;this.value=value;this.next=next;}//public Node(K key,V value) {this(key,value,null);}public Node(K key) {this(key,null,null);}public Node() {this(null,null,null);}@Overridepublic String toString() {return key."/>
+
+    <meta property="og:title" content="数据结构-链表Map映射（Java泛型）" />
+<meta property="og:description" content="接口设计：
+public interface Map&lt;K, V&gt; {void add(K key,V value);//加入一个key为值，value为键的map元素V remove(K key);//删除值为key的map元素boolean contains(K key);//查看是否存在值为key的元素V get(K key);//获得值为key的value值void set(K key,V newValue);//重新设置值为key的valueint getSize();//返回长度boolean isEmpty();//查看是否为空} 以链表为底层实现的Map映射，在博客结尾有应用例题
+import java.util.ArrayList;public class LinkedListMap&lt;K, V&gt; implements Map&lt;K, V&gt; { 定义一个节点内部类
+private class Node{public K key;public V value;public Node next;public Node(K key,V value,Node next) {this.key=key;this.value=value;this.next=next;}//public Node(K key,V value) {this(key,value,null);}public Node(K key) {this(key,null,null);}public Node() {this(null,null,null);}@Overridepublic String toString() {return key." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/linkedlistmap/" />
+<meta property="article:published_time" content="2020-02-01T17:26:00+08:00" />
+<meta property="article:modified_time" content="2020-02-01T17:26:00+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-链表Map映射（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 1, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>接口设计：</p>
+<pre><code>public interface Map&lt;K, V&gt; {
+void add(K key,V value);//加入一个key为值，value为键的map元素
+V remove(K key);//删除值为key的map元素
+boolean contains(K key);//查看是否存在值为key的元素
+V get(K key);//获得值为key的value值
+void set(K key,V newValue);//重新设置值为key的value
+int getSize();//返回长度
+boolean isEmpty();//查看是否为空
+}
+</code></pre>
+<p>以链表为底层实现的Map映射，在博客结尾有应用例题</p>
+<pre><code>import java.util.ArrayList;
+public class LinkedListMap&lt;K, V&gt; implements Map&lt;K, V&gt; {
+</code></pre>
+<p>定义一个节点内部类</p>
+<pre><code>private class Node{
+    public K key;
+    public V value;
+    public Node next;
+    public Node(K key,V value,Node next) {
+        this.key=key;
+        this.value=value;
+        this.next=next;
+    }
+    //public Node(K key,V value) {this(key,value,null);}
+    public Node(K key) {this(key,null,null);}
+    public Node() {this(null,null,null);}
+    @Override
+    public String toString() {return key.toString()+&quot; : &quot;+value.toString();}
+}
+private Node dummyHead;//虚拟头节点
+private int size;
+</code></pre>
+<p>构造函数</p>
+<pre><code>public LinkedListMap() {
+    dummyHead=new Node();
+    size=0;
+}
+</code></pre>
+<p>定义一个辅助函数，用传来的key返回Node节点</p>
+<pre><code>private Node getNode(K key) {
+    Node retNode=dummyHead.next;
+    while(retNode!=null) {
+        //注意：这里的if里不要用retNode.key==key
+        if(retNode.key.equals(key)) {
+            return retNode;
+        }
+        retNode=retNode.next;
+    }
+    return null;
+}
+@Override
+public void add(K key, V value) {
+    Node node=getNode(key);
+    if(node==null) {
+        dummyHead.next=new Node(key,value,dummyHead.next);
+        size++;
+    }else {
+        node.value=value;//这里设计为更新数据
+    }
+}
+@Override
+public V remove(K key) {
+    Node prevNode=dummyHead;
+    while(prevNode.next!=null) {
+        if(prevNode.next.key.equals(key)) {
+            break;
+        }
+        prevNode=prevNode.next;
+    }
+    if(prevNode.next!=null) {
+        Node delNode=prevNode.next;
+        prevNode.next=delNode.next;
+        delNode.next=null;
+        size--;
+        return delNode.value;
+    }
+    return null;
+}
+@Override
+public boolean contains(K key) {
+    return getNode(key)!=null;
+}
+@Override
+public V get(K key) {
+    return getNode(key)==null?null:getNode(key).value;
+}
+@Override
+public void set(K key, V newValue) {
+    Node node=getNode(key);
+    if(node==null) {
+        throw new IllegalArgumentException(key+&quot;doesn't exist!&quot;);
+    }else {
+        node.value=newValue;
+    }
+}
+@Override
+public int getSize() {
+    return size;
+}
+@Override
+public boolean isEmpty() {
+    return size==0;
+}
+</code></pre>
+<p>实例：查询文章中单词的出现频率，代码里的fileOperation是在集合比较中说明过的，把文件filename里的单词放进words中。</p>
+<pre><code>public static void main(String[] args) {
+    System.out.println(&quot;pride and prejudice&quot;);
+    ArrayList&lt;String&gt; words=new ArrayList&lt;String&gt;();
+    if(FileOperation.readFile(&quot;pride-and-prejudice.txt&quot;, words)) {
+        System.out.println(&quot;Total words:&quot;+words.size());
+		
+        LinkedListMap&lt;String,Integer&gt; map=new LinkedListMap&lt;String, Integer&gt;();
+        for(String word:words) {
+            if(map.contains(word)) {
+                map.set(word, map.get(word)+1);
+            }else {
+                map.add(word, 1);
+            }
+        }
+        System.out.println(&quot;Total different words :&quot;+map.getSize());
+        System.out.println(&quot;Frequency of PRIDE :&quot;+map.get(&quot;pride&quot;));
+    }
+}
+}
+</code></pre>
+<p>运行结果:</p>
+<pre><code>pride and prejudice
+Total words:45406
+Total different words4109
+Frequency of PRIDE :30
+</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
