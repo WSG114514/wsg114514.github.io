@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-最大二叉树（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-最大二叉树（Java泛型）"/>
+<meta name="twitter:description" content="最大二叉树作为一个完全二叉树,可以用数组Array来装，其特点是父节点比两个子节点大。在最后有用最大二叉树为底层实现的优先队列。
+public class MaxHeap&lt;E extends Comparable&lt;E&gt;&gt; {private Array&lt;E&gt; data; 构造函数
+public MaxHeap(int capacity) {data=new Array&lt;&gt;(capacity);}public MaxHeap() {data=new Array&lt;&gt;();}public MaxHeap(E[] arr) {data=new Array&lt;&gt;(arr);//用一个循环，从最后一个非叶子节点开始（就是最后一个叶子节点的父节点），到根节点进行siftDown操作。for(int i=parent(arr.length-1);i&gt;=0;i--) {siftDown(i);}} 返回堆中的元素个数
+public int size() {return data.getSize();} 返回一个布尔值，表示堆中是否为空
+public boolean isEmpty() {return data.isEmpty();} 设置三个私有辅助函数 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
+private int parent(int index) {if(index==0) {throw new IllegalAccessError(&quot;index-0 doesn&#39;t have parent."/>
+
+    <meta property="og:title" content="数据结构-最大二叉树（Java泛型）" />
+<meta property="og:description" content="最大二叉树作为一个完全二叉树,可以用数组Array来装，其特点是父节点比两个子节点大。在最后有用最大二叉树为底层实现的优先队列。
+public class MaxHeap&lt;E extends Comparable&lt;E&gt;&gt; {private Array&lt;E&gt; data; 构造函数
+public MaxHeap(int capacity) {data=new Array&lt;&gt;(capacity);}public MaxHeap() {data=new Array&lt;&gt;();}public MaxHeap(E[] arr) {data=new Array&lt;&gt;(arr);//用一个循环，从最后一个非叶子节点开始（就是最后一个叶子节点的父节点），到根节点进行siftDown操作。for(int i=parent(arr.length-1);i&gt;=0;i--) {siftDown(i);}} 返回堆中的元素个数
+public int size() {return data.getSize();} 返回一个布尔值，表示堆中是否为空
+public boolean isEmpty() {return data.isEmpty();} 设置三个私有辅助函数 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
+private int parent(int index) {if(index==0) {throw new IllegalAccessError(&quot;index-0 doesn&#39;t have parent." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/maxheap/" />
+<meta property="article:published_time" content="2020-02-11T15:56:38+08:00" />
+<meta property="article:modified_time" content="2020-02-11T15:56:38+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-最大二叉树（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 11, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>最大二叉树作为一个完全二叉树,可以用数组Array来装，其特点是父节点比两个子节点大。在最后有用最大二叉树为底层实现的优先队列。</p>
+<pre><code>public class MaxHeap&lt;E extends Comparable&lt;E&gt;&gt; {
+private Array&lt;E&gt; data;
+</code></pre>
+<p>构造函数</p>
+<pre><code>public MaxHeap(int capacity) {
+    data=new Array&lt;&gt;(capacity);
+}
+public MaxHeap() {
+    data=new Array&lt;&gt;();
+}
+public MaxHeap(E[] arr) {
+    data=new Array&lt;&gt;(arr);
+    //用一个循环，从最后一个非叶子节点开始（就是最后一个叶子节点的父节点），到根节点进行siftDown操作。
+    for(int i=parent(arr.length-1);i&gt;=0;i--) {
+        siftDown(i);
+    }
+}
+</code></pre>
+<p>返回堆中的元素个数</p>
+<pre><code>public int size() {
+    return data.getSize();
+}
+</code></pre>
+<p>返回一个布尔值，表示堆中是否为空</p>
+<pre><code>public boolean isEmpty() {
+    return data.isEmpty();
+}
+</code></pre>
+<p>设置三个私有辅助函数
+返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引</p>
+<pre><code>private int parent(int index) {
+    if(index==0) {
+        throw new IllegalAccessError(&quot;index-0 doesn't have parent.&quot;);
+    }
+    return (index-1)/2;
+}
+</code></pre>
+<p>返回完全二叉树的数组表示中,一个索引所表示的元素的左孩子节点的索引</p>
+<pre><code>private int leftChild(int index) {
+    return index*2+1;
+}
+</code></pre>
+<p>返回完全二叉树的数组表示中,一个索引所表示的元素的右孩子节点的索引</p>
+<pre><code>private int rightChild(int index) {
+    return index*2+2;
+}
+</code></pre>
+<p>向堆中添加元素</p>
+<pre><code>public void add(E e) {
+    data.addlist(e);
+    //按照最大二叉树规则，我先把插入元素放到最后面，再比较他的父节点，如果比父节点大那么就和父节点交换。
+    siftUp(data.getSize()-1);
+}
+</code></pre>
+<p>上浮</p>
+<pre><code>private void siftUp(int k){
+    while(k&gt;0&amp;&amp;data.get(parent(k)).compareTo(data.get(k))&lt;0) {
+        data.swap(k, parent(k));
+        k=parent(k);
+    }
+}
+</code></pre>
+<p>查看堆中的最大元素</p>
+<pre><code>public E findMax() {
+    if(data.getSize()==0) {
+        throw new IllegalAccessError(&quot;Can not findMax when heap is empty&quot;);
+    }
+    return data.getFirst();
+}
+</code></pre>
+<p>取出堆中的最大元素</p>
+<pre><code>public E extractMax() {
+    E ret=findMax();
+    data.swap(0, data.getSize()-1);
+    data.removeLast();
+    siftDown(0);
+    return ret;
+}
+</code></pre>
+<p>下沉</p>
+<pre><code>private void siftDown(int k) {
+    while(leftChild(k)&lt;data.getSize()) {
+        int j=leftChild(k);
+        //j+1为k的右子树，当右子树存在且比左子树大
+        if(j+1&lt;data.getSize()&amp;&amp;data.get(j+1).compareTo(data.get(j))&gt;0) {
+            j=rightChild(k);//把j移动到右子树上
+            //data[j]是leftChild和rightChild中的最大值
+        }
+        if(data.get(k).compareTo(data.get(j))&gt;=0) {
+            break;//比左右子树最大的都要大，循环结束
+        }
+        data.swap(k, j);
+        k=j;
+    }
+}
+//replace:取出最大元素后，放入一个新元素e
+//实现1：可以先extractMax，再add，两次O(logn)的操作
+//实现2：可以直接将堆顶元素替换以后sift Down，一次O(logn)的操作
+public E replace(E e) {
+    E ret=findMax();
+    data.set(0, e);
+    siftDown(0);
+    return ret;
+}
+//heapify:将任意数组整理成堆的形状
+//将n个元素逐个插入搭配一个空堆中，算法复杂度是O(nlogn)，而heapify的过程，算法复杂度为O(n)
+}
+</code></pre>
+<p>优先队列,按照优先级把元素排列成一个队列</p>
+<pre><code>public class PriorityQueue&lt;E extends Comparable&lt;E&gt;&gt; implements Queue&lt;E&gt;{
+//底层由最大二叉树实现
+private MaxHeap&lt;E&gt; maxHeap;
+public PriorityQueue() {
+    maxHeap=new MaxHeap&lt;E&gt;();
+}
+@Override
+public int getSize() {
+    return maxHeap.size();
+}
+@Override
+public boolean isEmpty() {
+    return maxHeap.isEmpty();
+}
+@Override
+public void enqueue(E e) {
+    //入队操作
+    maxHeap.add(e);
+}
+@Override
+public E dequeue() {
+    //出队操作
+    return maxHeap.extractMax();
+}
+@Override
+public E getFront() {
+    //查看队首
+    return maxHeap.findMax();
+}
+}</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

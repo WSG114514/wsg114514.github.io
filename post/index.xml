@@ -6,10 +6,37 @@
     <description>Recent content in Posts on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 20:35:20 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2020 16:16:20 +0800</lastBuildDate>
     
 	<atom:link href="https://wsg114514.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构-线段树（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/segmenttree/</link>
+      <pubDate>Tue, 11 Feb 2020 16:16:20 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/segmenttree/</guid>
+      <description>线段树的特点是动态地保存数据，修改数据，选择一个区间范围内的数据加以修改。由于时间复杂度为O(logn)所以运算较快，但是非常耗费空间，为了保存一个数组数据内容通常要按照最坏的情况为线段树申请空间，为原数组占用空间的4倍。 融合器
+public interface Merger&amp;lt;E&amp;gt; {E merge(E a,E b);} 线段树
+public class SegmentTree&amp;lt;E&amp;gt; {private E[] tree;private E[] data;private Merger&amp;lt;E&amp;gt; merger; 构造函数
+public SegmentTree(E[] arr,Merger&amp;lt;E&amp;gt; merger) {this.merger=merger;data=(E[])new Object[arr.length];for(int i=0;i&amp;lt;arr.length;i++) {data[i]=arr[i];}//线段树用一个树来表示,其所需要的最大空间为存储的数组容量的4倍tree=(E[])new Object[4*arr.length];buildSegmentTree(0,0,data.length-1);} 在treeIndex的位置，创建表示区间[l&amp;hellip;.r]的线段树
+private void buildSegmentTree(int treeIndex,int l,int r) {//单个节点if(l==r) {tree[treeIndex]=data[l];return;}int leftTreeIndex=leftChild(treeIndex);int rightTreeIndex=rightChild(treeIndex);//设置区间变量int mid=l+(r-l)/2;buildSegmentTree(leftTreeIndex, l, mid);buildSegmentTree(rightTreeIndex, mid+1, r);tree[treeIndex]=merger.</description>
+    </item>
+    
+    <item>
+      <title>数据结构-最大二叉树（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/maxheap/</link>
+      <pubDate>Tue, 11 Feb 2020 15:56:38 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/maxheap/</guid>
+      <description>最大二叉树作为一个完全二叉树,可以用数组Array来装，其特点是父节点比两个子节点大。在最后有用最大二叉树为底层实现的优先队列。
+public class MaxHeap&amp;lt;E extends Comparable&amp;lt;E&amp;gt;&amp;gt; {private Array&amp;lt;E&amp;gt; data; 构造函数
+public MaxHeap(int capacity) {data=new Array&amp;lt;&amp;gt;(capacity);}public MaxHeap() {data=new Array&amp;lt;&amp;gt;();}public MaxHeap(E[] arr) {data=new Array&amp;lt;&amp;gt;(arr);//用一个循环，从最后一个非叶子节点开始（就是最后一个叶子节点的父节点），到根节点进行siftDown操作。for(int i=parent(arr.length-1);i&amp;gt;=0;i--) {siftDown(i);}} 返回堆中的元素个数
+public int size() {return data.getSize();} 返回一个布尔值，表示堆中是否为空
+public boolean isEmpty() {return data.isEmpty();} 设置三个私有辅助函数 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
+private int parent(int index) {if(index==0) {throw new IllegalAccessError(&amp;quot;index-0 doesn&#39;t have parent.</description>
+    </item>
     
     <item>
       <title>数据结构-二叉树Map映射（Java泛型）</title>
