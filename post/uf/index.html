@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-并查集（java） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-并查集（java）"/>
+<meta name="twitter:description" content="本博客写了一共六个版本的并查集，并查集的主要作用是检查两个节点是否在同一个集合里，或者把两个节点并到同一个集合里，主要用在检查连个端点是否连接。
+接口设置
+public interface UF {int getSize();boolean isConnected(int p,int q);//查看两个节点是否连接void unionElements(int p,int q);//将两个元素并在一起} 并查集版本1，底层只是普通数组。
+public class UnionFind1 implements UF {private int[] id;	public UnionFind1(int size) {id=new int[size];for(int i=0;i&lt;id.length;i&#43;&#43;) {id[i]=i;}} 查找元素p所对应的集合编号
+private int find(int p) {if(p&lt;0&amp;&amp;p&gt;=id.length) {throw new IllegalArgumentException(&quot;p is out of bound.&quot;);}return id[p];}@Overridepublic int getSize() {return id.length;} 查看元素p和元素q是否所属一个集合"/>
+
+    <meta property="og:title" content="数据结构-并查集（java）" />
+<meta property="og:description" content="本博客写了一共六个版本的并查集，并查集的主要作用是检查两个节点是否在同一个集合里，或者把两个节点并到同一个集合里，主要用在检查连个端点是否连接。
+接口设置
+public interface UF {int getSize();boolean isConnected(int p,int q);//查看两个节点是否连接void unionElements(int p,int q);//将两个元素并在一起} 并查集版本1，底层只是普通数组。
+public class UnionFind1 implements UF {private int[] id;	public UnionFind1(int size) {id=new int[size];for(int i=0;i&lt;id.length;i&#43;&#43;) {id[i]=i;}} 查找元素p所对应的集合编号
+private int find(int p) {if(p&lt;0&amp;&amp;p&gt;=id.length) {throw new IllegalArgumentException(&quot;p is out of bound.&quot;);}return id[p];}@Overridepublic int getSize() {return id.length;} 查看元素p和元素q是否所属一个集合" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/uf/" />
+<meta property="article:published_time" content="2020-02-14T18:18:59+08:00" />
+<meta property="article:modified_time" content="2020-02-14T18:18:59+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-并查集（java）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 14, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>本博客写了一共六个版本的并查集，并查集的主要作用是检查两个节点是否在同一个集合里，或者把两个节点并到同一个集合里，主要用在检查连个端点是否连接。</p>
+<p>接口设置</p>
+<pre><code>public interface UF {
+    int getSize();
+    boolean isConnected(int p,int q);//查看两个节点是否连接
+    void unionElements(int p,int q);//将两个元素并在一起
+}
+</code></pre>
+<p>并查集版本1，底层只是普通数组。</p>
+<pre><code>public class UnionFind1 implements UF {
+private int[] id;	
+public UnionFind1(int size) {
+    id=new int[size];
+    for(int i=0;i&lt;id.length;i++) {
+        id[i]=i;
+    }
+}
+</code></pre>
+<p>查找元素p所对应的集合编号</p>
+<pre><code>private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;=id.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    return id[p];
+}
+
+@Override
+public int getSize() {
+    return id.length;
+}
+</code></pre>
+<p>查看元素p和元素q是否所属一个集合</p>
+<pre><code>@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+
+@Override
+public void unionElements(int p, int q) {
+    int pID=find(p);
+    int qID=find(q);
+    if(pID==qID) {
+        return;
+    }
+    for(int i=0;i&lt;id.length;i++) {
+        if(id[i]==pID) {
+            id[i]=qID;
+        }
+    }
+}
+}
+</code></pre>
+<p>并查集版本2，类似于树结构，子节点指向父节点</p>
+<pre><code>public class UnionFind2 implements UF{
+private int[] parent;
+
+public UnionFind2(int size) {
+    parent=new int[size];
+    for(int i=0;i&lt;size;i++) {
+        parent[i]=i;
+    }
+}
+
+@Override
+public int getSize() {
+    return parent.length;
+}
+</code></pre>
+<p>查找p节点的根节点。
+时间复杂度为o(h)，h为树的高度</p>
+<pre><code>private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;parent.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    //p=parent[p]时，p节点为根节点
+    while(p!=parent[p]) {
+        p=parent[p];
+    }
+    return p;
+}
+@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+
+@Override
+public void unionElements(int p, int q) {
+    int pRoot=find(p);
+    int qRoot=find(q);
+    if(pRoot==qRoot) {
+        return;
+    }
+    parent[pRoot]=qRoot;
+}
+}
+</code></pre>
+<p>版本3：</p>
+<pre><code>public class UnionFind3 implements UF{
+private int[] parent;
+//sz[i]表示以i为根的集合中元素个数
+private int[] sz;
+
+public UnionFind3(int size) {
+    parent=new int[size];
+    sz=new int[size];
+    for(int i=0;i&lt;size;i++) {
+        parent[i]=i;
+        sz[i]=1;
+    }
+}
+@Override
+public int getSize() {
+    return parent.length;
+}
+private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;=parent.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    while(p!=parent[p]) {
+        p=parent[p];
+    }
+    return p;
+}
+@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+@Override
+public void unionElements(int p, int q) {
+    int pRoot=find(p);
+    int qRoot=find(q);
+    if(pRoot==qRoot) {
+        return;
+    }
+</code></pre>
+<p>——————————————与UnionFind2的不同之处————————————————</p>
+<pre><code>    //让短的一方指向长的一方，以此来减少树的高度，基于size的优化
+    //根据两个元素所在树的元素个数不同判断合并方向
+    //将元素个数少的集合合并到元素个数多的集合上
+    if(sz[pRoot]&lt;sz[qRoot]) {
+        parent[pRoot]=qRoot;
+        sz[qRoot]+=sz[pRoot];
+    }else {
+        parent[qRoot]=pRoot;
+        sz[pRoot]+=sz[qRoot];
+    }
+}
+</code></pre>
+<p>第四版UnionFind4</p>
+<pre><code>public class UnionFind4 implements UF{
+private int[] parent;
+private int[] rank;
+
+public UnionFind4(int size) {
+    parent=new int[size];
+    rank=new int[size];
+	
+    for(int i=0;i&lt;size;i++) {
+        parent[i]=i;
+        rank[i]=1;
+    }
+}
+@Override
+public int getSize() {
+    return parent.length;
+}
+private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;=parent.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    while(p!=parent[p]) {
+        p=parent[p];
+    }
+    return p;
+}
+@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+@Override
+public void unionElements(int p, int q) {
+    int pRoot=find(p);
+    int qRoot=find(q);
+	
+    if(pRoot==qRoot) {
+        return;
+    }
+    //根据两个元素所在树的rank不同判断合并方向
+    //将rank低的集合合并到rank高的集合上
+    if(rank[pRoot]&lt;rank[qRoot]) {
+        parent[pRoot]=qRoot;
+    }else if(rank[qRoot]&lt;rank[pRoot]){
+        parent[qRoot]=pRoot;
+    }else {//rank[qRoot]==rank[pRoot]
+        parent[qRoot]=pRoot;
+        rank[pRoot]+=1;
+    }
+}
+}
+</code></pre>
+<p>第五版本并查集，路径压缩</p>
+<pre><code>public class UnionFind5 implements UF{
+private int[] parent;
+private int[] rank;
+
+public UnionFind5(int size) {
+    parent=new int[size];
+    rank=new int[size];
+	
+    for(int i=0;i&lt;size;i++) {
+        parent[i]=i;
+        rank[i]=1;
+    }
+}
+@Override
+public int getSize() {
+    return parent.length;
+}
+private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;=parent.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    while(p!=parent[p]) {
+    //——————————重点————————————
+        parent[p]=parent[parent[p]];
+        //将当前的p引向p的父节点的父节点，减少深度。
+        p=parent[p];
+    }
+    return p;
+}
+@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+@Override
+public void unionElements(int p, int q) {
+    int pRoot=find(p);
+    int qRoot=find(q);
+	
+    if(pRoot==qRoot) {
+        return;
+    }
+    //根据两个元素所在树的rank不同判断合并方向
+    //将rank低的集合合并到rank高的集合上
+    if(rank[pRoot]&lt;rank[qRoot]) {
+        parent[pRoot]=qRoot;
+    }else if(rank[qRoot]&lt;rank[pRoot]){
+        parent[qRoot]=pRoot;
+    }else {//rank[qRoot]==rank[pRoot]
+        parent[qRoot]=pRoot;
+        rank[pRoot]+=1;
+    }
+}
+}
+</code></pre>
+<p>//第六版本并查集</p>
+<pre><code>public class UnionFind6 implements UF{
+private int[] parent;
+private int[] rank;
+public UnionFind6(int size) {
+    parent=new int[size];
+    rank=new int[size];
+	
+    for(int i=0;i&lt;size;i++) {
+        parent[i]=i;
+        rank[i]=1;
+    }
+}
+@Override
+public int getSize() {
+    return parent.length;
+}
+private int find(int p) {
+    if(p&lt;0&amp;&amp;p&gt;=parent.length) {
+        throw new IllegalArgumentException(&quot;p is out of bound.&quot;);
+    }
+    if(p!=parent[p]) {
+        parent[p]=find(parent[p]);
+    }
+    return parent[p];
+}
+@Override
+public boolean isConnected(int p, int q) {
+    return find(p)==find(q);
+}
+@Override
+public void unionElements(int p, int q) {
+    int pRoot=find(p);
+    int qRoot=find(q);
+	
+    if(pRoot==qRoot) {
+        return;
+    }
+    //根据两个元素所在树的rank不同判断合并方向
+    //将rank低的集合合并到rank高的集合上
+    if(rank[pRoot]&lt;rank[qRoot]) {
+        parent[pRoot]=qRoot;
+    }else if(rank[qRoot]&lt;rank[pRoot]){
+        parent[qRoot]=pRoot;
+    }else {//rank[qRoot]==rank[pRoot]
+        parent[qRoot]=pRoot;
+        rank[pRoot]+=1;
+    }
+}
+}
+</code></pre>
+<p>测试</p>
+<pre><code>    private static double testUF(UF uf,int m) {
+    int size=uf.getSize();
+    Random random=new Random();
+	
+    long startTime=System.nanoTime();
+	
+    for(int i=0;i&lt;m;i++) {
+        int a=random.nextInt(size);
+        int b=random.nextInt(size);
+        uf.unionElements(a, b);
+    }
+    for(int i=0;i&lt;m;i++) {
+        int a=random.nextInt(size);
+        int b=random.nextInt(size);
+        uf.isConnected(a, b);
+    }
+    long endTime=System.nanoTime();
+    return (endTime-startTime)/1000000000.0;
+}
+public static void main(String[] args) {
+    int size=200000;
+    int m=200000;
+    UnionFind1 uf1=new UnionFind1(size);
+    System.out.println(&quot;UnionFind1:&quot;+testUF(uf1, m)+&quot;s&quot;);
+    UnionFind2 uf2=new UnionFind2(size);
+    System.out.println(&quot;UnionFind2:&quot;+testUF(uf2, m)+&quot;s&quot;);
+    UnionFind3 uf3=new UnionFind3(size);
+    System.out.println(&quot;UnionFind3:&quot;+testUF(uf3, m)+&quot;s&quot;);
+    UnionFind4 uf4=new UnionFind4(size);
+    System.out.println(&quot;UnionFind4:&quot;+testUF(uf4, m)+&quot;s&quot;);
+    UnionFind5 uf5=new UnionFind5(size);
+    System.out.println(&quot;UnionFind5:&quot;+testUF(uf5, m)+&quot;s&quot;);
+    UnionFind6 uf6=new UnionFind6(size);
+    System.out.println(&quot;UnionFind6:&quot;+testUF(uf6, m)+&quot;s&quot;);
+</code></pre>
+<p>结果：</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
