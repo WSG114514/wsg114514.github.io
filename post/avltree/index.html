@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>数据结构-平衡二叉树（Java泛型） // My Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://wsg114514.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构-平衡二叉树（Java泛型）"/>
+<meta name="twitter:description" content="平衡二叉树在普通二叉树的基础上增加了自身平衡的特点，因为在一定条件下普通二叉树有可能退化成为链表，但平衡二叉树在每次添加或删除元素时都会检查二叉树的平衡性，也就是当树的最大高度与最小高度的高度差大于1时，平衡被打破，需要通过左旋转或右旋转更新二叉树。在本章博客结尾有普通二叉树与平衡二叉树的极端比较，由此体现平衡二叉树的优势。
+import java.util.ArrayList; 平衡二叉树，每个节点左子树与右子树的高度差不能超过1,是对普通二分搜索树的改进，在一定情况下二分搜索树可能退化成链表
+public class AVLTree&lt;K extends Comparable&lt;K&gt;,V&gt;implements Map&lt;K, V&gt; {private class Node{public K key;public V value;public Node left,right; //——***——与BST的不同之处,每个节点都有自己的高度public int height;public Node(K key,V value) {this.key=key;this.value=value;left=null;right=null;height=1;}} 成员变量
+private Node root;private int size;public AVLTree() {root=null;size=0;} 辅助函数,返回以node为根节点的二分搜索树中，key所在的节点
+private Node getNode(Node node,K key) {if(node==null) {return null;}if(key.compareTo(node.key)==0) {return node;}else if(key."/>
+
+    <meta property="og:title" content="数据结构-平衡二叉树（Java泛型）" />
+<meta property="og:description" content="平衡二叉树在普通二叉树的基础上增加了自身平衡的特点，因为在一定条件下普通二叉树有可能退化成为链表，但平衡二叉树在每次添加或删除元素时都会检查二叉树的平衡性，也就是当树的最大高度与最小高度的高度差大于1时，平衡被打破，需要通过左旋转或右旋转更新二叉树。在本章博客结尾有普通二叉树与平衡二叉树的极端比较，由此体现平衡二叉树的优势。
+import java.util.ArrayList; 平衡二叉树，每个节点左子树与右子树的高度差不能超过1,是对普通二分搜索树的改进，在一定情况下二分搜索树可能退化成链表
+public class AVLTree&lt;K extends Comparable&lt;K&gt;,V&gt;implements Map&lt;K, V&gt; {private class Node{public K key;public V value;public Node left,right; //——***——与BST的不同之处,每个节点都有自己的高度public int height;public Node(K key,V value) {this.key=key;this.value=value;left=null;right=null;height=1;}} 成员变量
+private Node root;private int size;public AVLTree() {root=null;size=0;} 辅助函数,返回以node为根节点的二分搜索树中，key所在的节点
+private Node getNode(Node node,K key) {if(node==null) {return null;}if(key.compareTo(node.key)==0) {return node;}else if(key." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wsg114514.github.io/post/avltree/" />
+<meta property="article:published_time" content="2020-02-20T11:10:15+08:00" />
+<meta property="article:modified_time" content="2020-02-20T11:10:15+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://wsg114514.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="Jon" /></a>
+      <h1>My Hugo Site</h1>
+      <p>Hello visitor , nice to meet you~~~</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/WSG114514" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">数据结构-平衡二叉树（Java泛型）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 20, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>平衡二叉树在普通二叉树的基础上增加了自身平衡的特点，因为在一定条件下普通二叉树有可能退化成为链表，但平衡二叉树在每次添加或删除元素时都会检查二叉树的平衡性，也就是当树的最大高度与最小高度的高度差大于1时，平衡被打破，需要通过左旋转或右旋转更新二叉树。在本章博客结尾有普通二叉树与平衡二叉树的极端比较，由此体现平衡二叉树的优势。</p>
+<pre><code>import java.util.ArrayList;
+</code></pre>
+<p>平衡二叉树，每个节点左子树与右子树的高度差不能超过1,是对普通二分搜索树的改进，在一定情况下二分搜索树可能退化成链表</p>
+<pre><code>public class AVLTree&lt;K extends Comparable&lt;K&gt;,V&gt;implements Map&lt;K, V&gt; {
+private class Node{
+    public K key;
+    public V value;
+    public Node left,right; 
+    //——***——与BST的不同之处,每个节点都有自己的高度
+    public int height;
+	
+    public Node(K key,V value) {
+        this.key=key;
+        this.value=value;
+        left=null;
+        right=null;
+        height=1;
+    }
+}
+</code></pre>
+<p>成员变量</p>
+<pre><code>private Node root;
+private int size;
+public AVLTree() {
+    root=null;
+    size=0;
+}
+</code></pre>
+<p>辅助函数,返回以node为根节点的二分搜索树中，key所在的节点</p>
+<pre><code>private Node getNode(Node node,K key) {
+    if(node==null) {
+        return null;
+    }
+	
+    if(key.compareTo(node.key)==0) {
+        return node;
+    }else if(key.compareTo(node.key)&lt;0) {
+        return getNode(node.left, key);
+    }else { //(key.compareTo(node.key)&gt;0)
+        return getNode(node.right, key);
+    }
+}
+</code></pre>
+<p>辅助函数,获得节点node的平衡因子</p>
+<pre><code>private int getBalanceFactor(Node node) {
+    if(node==null) {
+        return 0;
+    }
+    return getHeight(node.left)-getHeight(node.right);
+}
+</code></pre>
+<p>对节点y进行右旋转操作，返回旋转后新的根节点x</p>
+<pre><code>      y                                  x
+     / \                               /   \
+    x  T4        向右旋转y            z     y
+   / \       ---------------&gt;        / \   / \
+  z  T3	                            T1 T2 T3 T4
+ / \
+T1 T2
+</code></pre>
+<p>右旋转后得到的新节点</p>
+<pre><code>private Node rightRotate(Node y) {
+    Node x=y.left;
+    Node T3=x.right;
+    //向右旋转过程
+    x.right=y;
+    y.left=T3;
+    //更新height
+    y.height=Math.max(getHeight(y.left), getHeight(y.right))+1;
+    x.height=Math.max(getHeight(x.left), getHeight(x.right))+1;
+    return x;
+}
+</code></pre>
+<p>对节点y进行左旋转操作，返回旋转后新的根节点x</p>
+<pre><code>     y                              x
+    / \                           /   \
+   T4  x       向左旋转y          y     z
+       / \  ---------------&gt;     / \   / \
+     T3  z                      T4 T3 T1 T2  
+        / \
+       T1  T2
+</code></pre>
+<p>右旋转后得到的新节点</p>
+<pre><code>private Node leftRotate(Node y) {
+    Node x=y.right;
+    Node T3=x.left;
+    //向左旋转过程
+    x.left=y;
+    y.right=T3;
+    //更新height
+    y.height=Math.max(getHeight(y.left), getHeight(y.right))+1;
+    x.height=Math.max(getHeight(x.left), getHeight(x.right))+1;
+    return x;
+}
+</code></pre>
+<p>获得节点node的高度</p>
+<pre><code>private int getHeight(Node node) {
+    if(node==null) {
+        return 0;
+    }
+    return node.height;
+}
+</code></pre>
+<p>向二分搜索树中添加新的元素(key,value)</p>
+<pre><code>@Override
+public void add(K key, V value) {
+    root=add(root,key,value);
+}
+//向以node为根的二分搜索树中插入元素(key, value),递归算法
+private Node add(Node node,K key,V value) {
+    if(node==null) {
+        size++;
+        return new Node(key, value);
+    }
+    if(key.compareTo(node.key)&lt;0) {
+        node.left=add(node.left, key, value);
+    }else if(key.compareTo(node.key)&gt;0) {
+        node.right=add(node.right, key, value);
+    }else {//key.compareTo(node.key)==0
+        node.value=value;
+    }
+	
+    //更新height——***——
+    node.height=1+Math.max(getHeight(node.left), getHeight(node.right));
+    //计算平衡因子
+    int balanceFactor=getBalanceFactor(node);
+	
+    //平衡维护
+    //左偏左LL
+    if(balanceFactor&gt;1 &amp;&amp; getBalanceFactor(node.left)&gt;=0) {
+         return rightRotate(node);
+    }
+    //右偏右RR
+    if(balanceFactor&lt;-1&amp;&amp;getBalanceFactor(node.right)&lt;=0) {
+         return leftRotate(node);
+    }
+    //LR,左子树高，但左子树的右子树突出
+    if(balanceFactor&gt;1&amp;&amp;getBalanceFactor(node.left)&lt;0) {
+        node.left=leftRotate(node.left);
+        return rightRotate(node);
+    }
+    //RL，右子树高，但右子树的左子树突出
+    if(balanceFactor&lt;-1&amp;&amp;getBalanceFactor(node.right)&gt;0) {
+        node.right=rightRotate(node.right);
+        return leftRotate(node);
+    }
+    return node;
+}
+@Override
+public V remove(K key) {
+    Node node=getNode(root, key);
+    if(node!=null) {
+        root=remove(root,key);
+        return node.value;
+    }
+    return null;
+}
+</code></pre>
+<p>删除掉以node为根的二分搜索树中键为key的节点，递归算法</p>
+<p>返回删除节点后的新的二分搜索树的根</p>
+<pre><code>private Node remove(Node node,K key) {
+    if(node == null) {
+        return null;
+    }
+    Node retNode;
+    if(key.compareTo(node.key)&lt;0) {
+        node.left=remove(node.left, key);
+        retNode=node;
+    }else if(key.compareTo(node.key)&gt;0){
+        node.right=remove(node.right, key);
+        retNode=node;
+    }else {//key.compareTo(node.key)==0
+        //待删除节点左子树为空的情况
+        if(node.left==null) {
+            Node rightNode=node.right;
+            node.right=null;
+            size--;
+            retNode=rightNode;
+        }
+        //待删除节点右子树为空的情况
+        else if(node.right==null) {
+            Node leftNode=node.left;
+            node.left=null;
+            size--;
+            retNode=leftNode;
+        }
+        //待删除节点左右子树均不为空的情况
+        //找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+        //用这个节点代替要删除的节点
+        else {
+            Node successor=minimum(node.right);
+            successor.right=remove(node.right,successor.key);
+            successor.left=node.left;
+            node.left=node.right=null;
+            retNode=successor;
+        }
+    }
+    //当删除的是叶子节点，retNode就有可能为空，这时就不需要去维护平衡。
+    if(retNode==null) {
+        return null;
+    }
+    //此时的retNode为操作后的节点，需要维护一下平衡
+    retNode.height=1+Math.max(getHeight(retNode.left), getHeight(retNode.right));
+    //计算平衡因子
+    int balanceFactor=getBalanceFactor(retNode);
+	
+    //平衡维护
+    //左偏左LL
+    if(balanceFactor&gt;1 &amp;&amp; getBalanceFactor(retNode.left)&gt;=0) {
+         return rightRotate(retNode);
+    }
+    //右偏右RR
+    if(balanceFactor&lt;-1&amp;&amp;getBalanceFactor(retNode.right)&lt;=0) {
+         return leftRotate(retNode);
+    }
+    //LR,左子树高，但左子树的右子树突出
+    if(balanceFactor&gt;1&amp;&amp;getBalanceFactor(retNode.left)&lt;0) {
+        retNode.left=leftRotate(retNode.left);
+        return rightRotate(retNode);
+    }
+    //RL，右子树高，但右子树的左子树突出
+    if(balanceFactor&lt;-1&amp;&amp;getBalanceFactor(retNode.right)&gt;0) {
+        retNode.right=rightRotate(retNode.right);
+        return leftRotate(retNode);
+    }
+    return retNode;
+}
+
+@Override
+public boolean contains(K key) {
+    return getNode(root, key)!=null;
+}
+@Override
+public V get(K key) {
+    Node node=getNode(root, key);
+    return node==null?null:node.value;
+}
+@Override
+public void set(K key, V newValue) {
+    Node node=getNode(root, key);
+    if(node==null) {
+        throw new IllegalAccessError(key+&quot;doesn't exist!&quot;);
+    }
+    node.value=newValue;
+}
+@Override
+public int getSize() {
+    return size;
+}
+@Override
+public boolean isEmpty() {
+    return size==0;
+}
+</code></pre>
+<p>————***————判断该二叉树是否是一棵二分搜索树(中序遍历)</p>
+<pre><code>public boolean isBST() {
+    ArrayList&lt;K&gt; keys=new ArrayList&lt;&gt;();
+    inOrder(root,keys);
+    for(int i=1;i&lt;keys.size();i++) {
+        if(keys.get(i-1).compareTo(keys.get(i))&gt;0) {
+            return false;
+        }
+    }
+    return true;
+}
+private void inOrder(Node node,ArrayList&lt;K&gt; keys) {
+    if(node==null) {
+        return;
+    }
+    inOrder(node.left, keys);
+    keys.add(node.key);
+    inOrder(node.right, keys);
+}
+</code></pre>
+<p>判断该二叉树是否是一棵平衡二叉树</p>
+<pre><code>public boolean isBalanced() {
+    return isBalanced(root);
+}
+
+private boolean isBalanced(Node node) {
+    //一棵空树也是一棵平衡二叉树
+    if(node==null) {
+        return true;
+    }
+    int balanceFactor=getBalanceFactor(node);
+    if(Math.abs(balanceFactor)&gt;1) {
+        return false;
+    }
+    return isBalanced(node.left)&amp;&amp;isBalanced(node.right);
+}
+</code></pre>
+<p>寻找二分搜索树的最小元素</p>
+<pre><code>public Node minimum() {
+    if(size==0) {
+        throw new IllegalArgumentException(&quot;BST is empty&quot;);
+    }
+    return minimum(root);
+}
+private Node minimum(Node node) {
+    if(node.left==null) {
+        return node;
+    }
+    return minimum(node.left);
+}
+</code></pre>
+<p>测试main：</p>
+<pre><code>    public static void main(String[] args) {
+    System.out.println(&quot;Pride and Prejudice&quot;);
+    ArrayList&lt;String&gt; words=new ArrayList&lt;String&gt;();
+    if(FileOperation.readFile(&quot;pride-and-prejudice.txt&quot;, words)) {
+        //把words里的单词排序。
+        Collections.sort(words);
+        long starTime=System.nanoTime();
+    	
+        BSTMap&lt;String,Integer&gt; bst=new BSTMap&lt;String, Integer&gt;();
+        for(String word:words) {
+            if(bst.contains(word)) {
+                bst.set(word, bst.get(word)+1);
+            }else {
+                bst.add(word, 1);
+            }
+        }
+        for(String word:words) {
+            bst.contains(word);
+        }
+        long endTime=System.nanoTime();
+    	
+        double time=(endTime-starTime)/1000000000.0;
+        System.out.println(&quot;BST:&quot;+time+&quot; s&quot;);
+    	
+        starTime=System.nanoTime();
+        AVLTree&lt;String,Integer&gt; avlTree=new AVLTree&lt;String, Integer&gt;();
+        for(String word:words) {
+            if(avlTree.contains(word)) {
+                avlTree.set(word, avlTree.get(word)+1);
+            }else {
+                avlTree.add(word, 1);
+            }
+        }
+        for(String word:words) {
+            avlTree.contains(word);
+        }
+        endTime=System.nanoTime();
+        time=(endTime-starTime)/1000000000.0;
+        System.out.println(&quot;AVLTree:&quot;+time+&quot; s&quot;);
+    }
+} 	
+</code></pre>
+<p>结果：
+Pride and Prejudice</p>
+<p>BST:3.7146237 s</p>
+<p>AVLTree:0.0280227 s</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

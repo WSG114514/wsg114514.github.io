@@ -6,10 +6,23 @@
     <description>Recent content in Posts on My Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 09:31:21 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 11:10:15 +0800</lastBuildDate>
     
 	<atom:link href="https://wsg114514.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构-平衡二叉树（Java泛型）</title>
+      <link>https://wsg114514.github.io/post/avltree/</link>
+      <pubDate>Thu, 20 Feb 2020 11:10:15 +0800</pubDate>
+      
+      <guid>https://wsg114514.github.io/post/avltree/</guid>
+      <description>平衡二叉树在普通二叉树的基础上增加了自身平衡的特点，因为在一定条件下普通二叉树有可能退化成为链表，但平衡二叉树在每次添加或删除元素时都会检查二叉树的平衡性，也就是当树的最大高度与最小高度的高度差大于1时，平衡被打破，需要通过左旋转或右旋转更新二叉树。在本章博客结尾有普通二叉树与平衡二叉树的极端比较，由此体现平衡二叉树的优势。
+import java.util.ArrayList; 平衡二叉树，每个节点左子树与右子树的高度差不能超过1,是对普通二分搜索树的改进，在一定情况下二分搜索树可能退化成链表
+public class AVLTree&amp;lt;K extends Comparable&amp;lt;K&amp;gt;,V&amp;gt;implements Map&amp;lt;K, V&amp;gt; {private class Node{public K key;public V value;public Node left,right; //——***——与BST的不同之处,每个节点都有自己的高度public int height;public Node(K key,V value) {this.key=key;this.value=value;left=null;right=null;height=1;}} 成员变量
+private Node root;private int size;public AVLTree() {root=null;size=0;} 辅助函数,返回以node为根节点的二分搜索树中，key所在的节点
+private Node getNode(Node node,K key) {if(node==null) {return null;}if(key.compareTo(node.key)==0) {return node;}else if(key.</description>
+    </item>
     
     <item>
       <title>数据结构-字典树（Java）</title>
